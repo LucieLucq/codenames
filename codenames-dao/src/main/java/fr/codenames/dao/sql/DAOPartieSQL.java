@@ -1,7 +1,5 @@
 package fr.codenames.dao.sql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,109 +7,127 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.codenames.dao.IDAOCarte;
 import fr.codenames.dao.IDAOPartie;
-import fr.codenames.model.Carte;
 import fr.codenames.model.Grille;
+import fr.codenames.model.Joueur;
 import fr.codenames.model.Partie;
-import fr.codenames.model.Utilisateur;
-
-
 
 public class DAOPartieSQL extends DAOSQL implements IDAOPartie {
-	
 	public Partie map(ResultSet result) throws SQLException {
-		Partie p = new Partie();
-		// Associer les valeurs de la db à l'objet
-		p.setId(result.getInt("PAR_ID"));
-
-		//rattacher la partie à la grille
-		Grille g=new Grille (); 
-		g.setId(result.getInt("PAR_GRILLE_ID"));
-		p.setGrille(g);
-		return p;
+		Partie myPartie = new Partie();
+		
+		//ASSOCIER LES VALEURS DE LA DB A L'OBJET
+		myPartie.setId(result.getInt("PAR_ID"));
+		
+		myPartie.setGrille(new Grille());
+		myPartie.getGrille().setId(result.getInt("PAR_GRILLE_ID"));
+		
+		myPartie.setCapitaine(new Joueur());
+		myPartie.getCapitaine().setId(result.getInt("PAR_CAPITAINE_ID"));
+		
+		return myPartie;
 	}
 	
+	
 	public List<Partie> findAll() {
-		List<Partie> mesParties = new ArrayList<Partie>();
+		List<Partie> myParties = new ArrayList<Partie>();
+		
 		try {
 			this.connect();
 			Statement myStatement = this.connection.createStatement();
-			ResultSet myResult = myStatement.executeQuery("select * from Partie");
+			ResultSet myResult = myStatement.executeQuery("SELECT * FROM partie");
 
 			while (myResult.next()) {
-				Partie p = this.map(myResult);
-
-				mesParties.add(p);
+				//AJOUT DE LA PARTIE DANS LA LISTE
+				myParties.add(this.map(myResult));
 			}
+		}
 
-		} catch (SQLException e) {
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return mesParties;
+		
+		return myParties;
 	}
 	
+	
 	public Partie findById(int id) {
-		Partie maPartie = null;
+		Partie myPartie = null;
+		
 		try {
 			this.connect();
-			PreparedStatement myStatement = this.connection.prepareStatement("select * from Partie where PAR_ID= ?");
+			PreparedStatement myStatement = this.connection
+					.prepareStatement("SELECT * FROM partie WHERE PAR_ID = ?");
+			
 			myStatement.setInt(1, id);
 			ResultSet myResult = myStatement.executeQuery();
 
 			if (myResult.next()) {
-				maPartie = this.map(myResult);
+				myPartie = this.map(myResult);
 			}
+		}
 
-		} catch (SQLException e) {
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return maPartie;
+		
+		return myPartie;
 	}
 	
-	public Partie save(Partie p) {
+	
+	public Partie save(Partie entity) {
 		try {
-			// gerer la modification d'un produit
 			this.connect();
 			String myQuery = "";
-			if (p.getId() == 0) {
-				myQuery = "insert into Partie (PAR_GRILLE_ID) values (?) ";
-
-			} else {
-				myQuery = "update Partie  set PAR_GRILLE_ID=?"
-						+ " where PAR_ID=? ";
+			
+			if (entity.getId() == 0) { //Ajout de la partie
+				myQuery = "INSERT INTO partie (PAR_GRILLE_ID, PAR_CAPITAINE_ID)"
+						+ " VALUES (?, ?)";
 			}
-
+			
+			else { //Mise à jour du pouvoir
+				myQuery = "UPDATE partie SET PAR_GRILLE_ID = ?,"
+						+ " PAR_CAPITAINE_ID = ?"
+						+ " WHERE PAR_ID = ?";
+			}
+			
 			PreparedStatement myStatement = this.connection.prepareStatement(myQuery);
 
-			myStatement.setInt(1, p.getGrille().getId());
+			myStatement.setInt(1, entity.getGrille().getId());
+			myStatement.setInt(2, entity.getCapitaine().getId());
 			
-			if (p.getId() > 0) {
-				myStatement.setInt(2, p.getId());
+			if (entity.getId() > 0) {
+				myStatement.setInt(3, entity.getId());
 			}
+			
 			myStatement.execute();
-		} catch (SQLException e) {
+		}
+
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return p;
-
+		
+		return entity;
 	}
-
+	
+	
 	public void deleteById(int id) {
 		try {
-
 			this.connect();
-			PreparedStatement myStatement = this.connection.prepareStatement("delete from Partie where PAR_ID =? ");
+			PreparedStatement myStatement = this.connection
+					.prepareStatement("DELETE FROM partie WHERE PAR_ID = ?");
+			
 			myStatement.setInt(1, id);
 			myStatement.execute();
+		}
 
-		} catch (SQLException e) {
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-
-	public void delete(Partie p) {
-		this.deleteById(p.getId());
+	
+	
+	public void delete(Partie entity) {
+		this.deleteById(entity.getId());
 	}
-
-	}
+}

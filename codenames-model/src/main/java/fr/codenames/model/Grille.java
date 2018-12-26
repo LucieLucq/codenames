@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class Grille {
 	private int id;
+	private ArrayList<Case> cases;
 	private Difficulte difficulte;
-	private ArrayList<Case> cases = new ArrayList<Case>();
 
 	public int getId() {
 		return id;
@@ -13,14 +13,6 @@ public class Grille {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public Difficulte getDifficulte() {
-		return difficulte;
-	}
-
-	public void setDifficulte(Difficulte difficulte) {
-		this.difficulte = difficulte;
 	}
 
 	public ArrayList<Case> getCases() {
@@ -31,4 +23,11 @@ public class Grille {
 		this.cases = cases;
 	}
 
+	public Difficulte getDifficulte() {
+		return difficulte;
+	}
+
+	public void setDifficulte(Difficulte difficulte) {
+		this.difficulte = difficulte;
+	}
 }

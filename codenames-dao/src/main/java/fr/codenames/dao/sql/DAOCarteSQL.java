@@ -1,7 +1,5 @@
 package fr.codenames.dao.sql;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,106 +12,113 @@ import fr.codenames.model.Carte;
 
 public class DAOCarteSQL extends DAOSQL implements IDAOCarte {
 	public Carte map(ResultSet result) throws SQLException {
-		//pour factoriser par la suite	
-			Carte c = new Carte();
-			
-			// Associer les valeurs de la db à l'objet
-			c.setId(result.getInt("CAR_ID"));
-			c.setLibelle(result.getString("CAR_LIBELLE"));
-			
-			return c;
-		}
+		Carte myCarte = new Carte();
+		
+		//ASSOCIER LES VALEURS DE LA DB A L'OBJET
+		myCarte.setId(result.getInt("CAR_ID"));
+		myCarte.setLibelle(result.getString("CAR_LIBELLE"));
+		
+		return myCarte;
+	}
+	
+	
+	public List<Carte> findAll() {
+		List<Carte> myCartes = new ArrayList<Carte>();
+		
+		try {
+			this.connect();
+			Statement myStatement = this.connection.createStatement();
+			ResultSet myResult = myStatement.executeQuery("SELECT * FROM carte");
 
-		public List<Carte> findAll() {
-			
-			List<Carte> mesCartes = new ArrayList<Carte>();
-			
-			try {
-				this.connect();
-				Statement myStatement = this.connection.createStatement();
-				ResultSet myResult = myStatement.executeQuery("select * from carte");
-
-				while (myResult.next()) {
-					Carte c = this.map(myResult);
-
-					// ajout de la carte dans la liste
-					mesCartes.add(c);
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return mesCartes;
-		}
-
-		public Carte findById(int id) {
-			
-			Carte maCarte = null;
-			
-			try {
-				this.connect();
-				
-				PreparedStatement myStatement = this.connection
-						.prepareStatement("select * from carte where CAR_ID= ?");
-				myStatement.setInt(1, id);
-				ResultSet myResult = myStatement.executeQuery();
-
-				if (myResult.next()) {
-					maCarte = this.map(myResult);
-				}
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return maCarte;
-		}
-
-		public Carte save(Carte c) {
-			
-			try {
-				
-				// gérer la modification d'une carte
-				this.connect();
-				String myQuery = "";
-				if (c.getId() == 0) {
-					myQuery = "insert into carte (CAR_LIBELLE) values (?)";
-
-				} else {
-					myQuery = "update carte set CAR_LIBELLE= ? where CAR_ID=? ";
-				}
-
-				PreparedStatement myStatement = this.connection.prepareStatement(myQuery);
-
-				myStatement.setString(1, c.getLibelle());
-			
-
-				if (c.getId() > 0) {
-					myStatement.setInt(2, c.getId());
-				}
-				myStatement.execute();
-				
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			return c;
-
-		}
-
-		public void deleteById(int id) {
-			try {
-
-				this.connect();
-				PreparedStatement myStatement = this.connection
-						.prepareStatement("delete from carte where CAR_ID =? ");
-				myStatement.setInt(1, id);
-				myStatement.execute();
-
-			} catch (SQLException e) {
-				e.printStackTrace();
+			while (myResult.next()) {
+				//AJOUT DE LA CARTE DANS LA LISTE
+				myCartes.add(this.map(myResult));
 			}
 		}
 
-		public void delete(Carte c) {
-			this.deleteById(c.getId());
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return myCartes;
+	}
+	
+	
+	public Carte findById(int id) {
+		Carte myCarte = null;
+		
+		try {
+			this.connect();
+			PreparedStatement myStatement = this.connection
+					.prepareStatement("SELECT * FROM carte WHERE CAR_ID = ?");
+			
+			myStatement.setInt(1, id);
+			ResultSet myResult = myStatement.executeQuery();
+
+			if (myResult.next()) {
+				myCarte = this.map(myResult);
+			}
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return myCarte;
+	}
+	
+	
+	public Carte save(Carte entity) {
+		try {
+			this.connect();
+			String myQuery = "";
+			
+			if (entity.getId() == 0) { //Ajout de la carte
+				myQuery = "INSERT INTO carte (CAR_LIBELLE)"
+						+ " VALUES (?)";
+			}
+			
+			else { //Mise à jour de la carte
+				myQuery = "UPDATE carte SET CAR_LIBELLE = ?"
+						+ " WHERE CAR_ID = ?";
+			}
+			
+			PreparedStatement myStatement = this.connection.prepareStatement(myQuery);
+			
+			myStatement.setString(1, entity.getLibelle());
+			
+			if (entity.getId() > 0) {
+				myStatement.setInt(2, entity.getId());
+			}
+			
+			myStatement.execute();
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return entity;
+	}
+	
+	
+	public void deleteById(int id) {
+		try {
+			this.connect();
+			PreparedStatement myStatement = this.connection
+					.prepareStatement("DELETE FROM carte WHERE CAR_ID = ?");
+			
+			myStatement.setInt(1, id);
+			myStatement.execute();
+		}
+
+		catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
+	
+	
+	public void delete(Carte entity) {
+		this.deleteById(entity.getId());
+	}
+}

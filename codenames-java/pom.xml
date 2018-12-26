@@ -9,11 +9,6 @@
   <dependencies>
   	<dependency>
   		<groupId>fr.codenames</groupId>
-  		<artifactId>codenames-model</artifactId>
-  		<version>0.0.1-SNAPSHOT</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>fr.codenames</groupId>
   		<artifactId>codenames-dao</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>

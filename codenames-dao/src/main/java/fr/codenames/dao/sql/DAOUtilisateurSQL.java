@@ -3,203 +3,139 @@ package fr.codenames.dao.sql;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-import java.util.Scanner;
 
 import fr.codenames.dao.IDAOUtilisateur;
+import fr.codenames.exception.AccountLockedException;
+import fr.codenames.exception.UsernameOrPasswordNotFoundException;
+import fr.codenames.model.Administrateur;
 import fr.codenames.model.Joueur;
+import fr.codenames.model.TypeUtilisateur;
 import fr.codenames.model.Utilisateur;
+import fr.codenames.exception.NonUniqueUsernameException;
 
 public class DAOUtilisateurSQL extends DAOSQL implements IDAOUtilisateur {
-
-	public Utilisateur map(ResultSet result) throws SQLException {
-		Utilisateur u = new Utilisateur();
-		// Associer les valeurs de la db à l'objet
-		u.setId(result.getInt("UTI_ID"));
-		u.setNom(result.getString("UTI_NOM"));
-		u.setPrenom(result.getString("UTI_PRENOM"));
-		u.setUsername(result.getString("UTI_USERNAME"));
-		u.setPassword(result.getString("UTI_PASSWORD"));
-		return u;
-	}
-
 	public List<Utilisateur> findAll() {
-		List<Utilisateur> mesUtilisateurs = new ArrayList<Utilisateur>();
-		try {
-			this.connect();
-			Statement myStatement = this.connection.createStatement();
-			ResultSet myResult = myStatement.executeQuery("select * from utilisateur");
-
-			while (myResult.next()) {
-				Utilisateur u = this.map(myResult);
-
-				// ajout du produit dans la liste
-				mesUtilisateurs.add(u);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return mesUtilisateurs;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	public Utilisateur findById(int id) {
-		Utilisateur monUtilisateur = null;
-		try {
-			this.connect();
-			PreparedStatement myStatement = this.connection
-					.prepareStatement("select * from utilisateur where UTI_ID= ?");
-			myStatement.setInt(1, id);
-			ResultSet myResult = myStatement.executeQuery();
-
-			if (myResult.next()) {
-				monUtilisateur = this.map(myResult);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return monUtilisateur;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public Utilisateur save(Utilisateur u) {
+	public Utilisateur save(Utilisateur entity) {
 		try {
-			// gerer la modification d'un produit
 			this.connect();
 			String myQuery = "";
-			if (u.getId() == 0) {
-				myQuery = "insert into utilisateur ( UTI_NOM, UTI_PRENOM, UTI_USERNAME, UTI_PASSWORD) values (?,?,?,?) ";
-
-			} else {
-				myQuery = "update utilisateur set UTI_NOM= ? ," + " UTI_PRENOM=? ," + " UTI_USERNAME=? ,"
-						+ " UTI_PASSWORD=? " + " where UTI_ID=? ";
+			
+			if (entity.getId() == 0) { //Ajout de l'utilisateur
+				myQuery = "INSERT INTO utilisateur (UTI_NOM, UTI_PRENOM, UTI_USERNAME, UTI_PASSWORD, UTI_TYPE, UTI_PSEUDO)"
+						+ " VALUES (?, ?, ?, ?, ?, ?)";
 			}
-
+			
+			else { //Mise à jour de l'utilisateur
+				myQuery = "UPDATE utilisateur SET UTI_NOM = ?,"
+						+ "	UTI_PRENOM = ?, "
+						+ " UTI_USERNAME = ?, "
+						+ " UTI_PASSWORD = ?, "
+						+ " UTI_TYPE = ?, "
+						+ " UTI_PSEUDO = ? "
+						+ " WHERE UTI_ID = ?";
+			}
+			
 			PreparedStatement myStatement = this.connection.prepareStatement(myQuery);
 
-			myStatement.setString(1, u.getNom());
-			myStatement.setString(2, u.getPrenom());
-			myStatement.setString(3, u.getUsername());
-			myStatement.setString(4, u.getPassword());
-
-			if (u.getId() > 0) {
-				myStatement.setInt(5, u.getId());
+			myStatement.setString(1, entity.getNom());
+			myStatement.setString(2, entity.getPrenom());
+			myStatement.setString(3, entity.getUsername());
+			myStatement.setString(4, entity.getPassword());
+			myStatement.setInt(5, entity.getType().ordinal());
+			
+			if (entity.getType() == TypeUtilisateur.JOUEUR) {
+				myStatement.setString(6, ((Joueur)entity).getPseudo());
 			}
+			
+			if (entity.getId() > 0) {
+				myStatement.setInt(7, entity.getId());
+			}
+			
 			myStatement.execute();
-		} catch (SQLException e) {
+		}
+		
+		catch (SQLIntegrityConstraintViolationException e) {
+			throw new NonUniqueUsernameException();
+		}
+
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return u;
+		
+		return entity;
+	}
 
+	public void delete(Utilisateur entity) {
+		// TODO Auto-generated method stub
 	}
 
 	public void deleteById(int id) {
-		try {
-
-			this.connect();
-			PreparedStatement myStatement = this.connection
-					.prepareStatement("delete from Utilisateur where UTI_ID =? ");
-			myStatement.setInt(1, id);
-			myStatement.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		// TODO Auto-generated method stub
 	}
 
-	public void delete(Utilisateur u) {
-		this.deleteById(u.getId());
-	}
-
-	///////////////////////////////////////////// Connexion
-	public void connexion() {
-
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Saisir votre nom d'utilisateur : ");
-		String username = sc.nextLine();
-		System.out.print("Saisir votre mot de passe : ");
-		String motDePasse = sc.nextLine();
-
+	public Utilisateur auth(String username, String password) throws UsernameOrPasswordNotFoundException, AccountLockedException {
 		try {
 			this.connect();
 			PreparedStatement myStatement = this.connection
-					.prepareStatement("select UTI_PASSWORD from utilisateur where UTI_USERNAME= ? ");
+					.prepareStatement("SELECT * FROM utilisateur WHERE UTI_USERNAME = ? AND UTI_PASSWORD = ?");
+
 			myStatement.setString(1, username);
-
+			myStatement.setString(2, password);
 			ResultSet myResult = myStatement.executeQuery();
 
 			if (myResult.next()) {
-				String MDP = myResult.getString(1);
-				if (MDP.equals(motDePasse)) {
-					System.out.println("Connexion réussie");
-				} else {
-					System.out.println("Mot de Passe incorrect");
-
+				Utilisateur myUtilisateur = this.map(myResult);
+				
+				if (myUtilisateur.getType() == TypeUtilisateur.JOUEUR) {
+					if (((Joueur)myUtilisateur).isBanni()) {
+						throw new AccountLockedException();
+					}
 				}
-			} else {
-				System.out.println("Nom d'utilisateur incorrect");
+				
+				return myUtilisateur;
 			}
-			myResult = myStatement.executeQuery();
+		}
 
-		} catch (SQLException e) {
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		throw new UsernameOrPasswordNotFoundException();
 	}
-
-	///////////////////////////////////////////// Inscription
-	public void inscription() {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Saisir votre nom : ");
-		String nom = sc.nextLine();
-		System.out.print("Saisir votre prenom : ");
-		String prenom = sc.nextLine();
-		System.out.print("Saisir votre nom d'utilisateur : ");
-		String username = sc.nextLine();
-		System.out.print("Saisir votre mot de passe : ");
-		String password = sc.nextLine();
-		System.out.print("Saisir votre pseudo : ");
-		String pseudo = sc.nextLine();
-
-		Utilisateur nouvelUtilisateur = new Utilisateur();
-		Joueur nouveauJoueur = new Joueur();
-		try {
-			this.connect();
-
-			PreparedStatement myStatement = this.connection.prepareStatement(
-					"insert into utilisateur (UTI_NOM, UTI_PRENOM, UTI_USERNAME, UTI_PASSWORD) values (?,?,?,?)");
-			myStatement.setString(1, nom);
-			myStatement.setString(2, prenom);
-			myStatement.setString(3, username);
-			myStatement.setString(4, password);
-
-			nouvelUtilisateur.setNom(nom);
-			nouvelUtilisateur.setPrenom(prenom);
-			nouvelUtilisateur.setUsername(username);
-			nouvelUtilisateur.setPassword(password);
-			myStatement.execute();
-
-			PreparedStatement myStatement1 = this.connection
-					.prepareStatement("select UTI_ID from utilisateur order by UTI_ID desc limit 0,1");
-			ResultSet myResult = myStatement1.executeQuery();
-
-			if (myResult.next()) {
-			nouvelUtilisateur.setId(myResult.getInt("UTI_ID"));}
-
-			PreparedStatement myStatement2 = this.connection
-					.prepareStatement("insert into joueur (JOU_PSEUDO, JOU_UTILISATEUR_ID) values (?,?)");
-			myStatement2.setString(1, pseudo);
-			myStatement2.setInt(2, nouvelUtilisateur.getId());
-
-			nouveauJoueur.setPseudo(pseudo);
-			nouveauJoueur.setId(nouvelUtilisateur.getId());
-
-			myStatement2.execute();
-
-		} catch (SQLException e) {
-			e.printStackTrace();
+	
+	
+	
+	
+	public Utilisateur map(ResultSet result) throws SQLException {
+		Utilisateur myUtilisateur = null;
+		
+		if (result.getInt("UTI_TYPE") == TypeUtilisateur.JOUEUR.ordinal()) {
+			myUtilisateur = new Joueur();
+			((Joueur)myUtilisateur).setPseudo(result.getString("UTI_PSEUDO"));
+			((Joueur)myUtilisateur).setBanni(result.getBoolean("UTI_BANNI"));
 		}
+		
+		else {
+			myUtilisateur = new Administrateur();
+		}
+		
+		//ASSOCIER LES VALEURS DE LA DB A L'OBJET
+		myUtilisateur.setId(result.getInt("UTI_ID"));
+		myUtilisateur.setNom(result.getString("UTI_NOM"));
+		myUtilisateur.setPrenom(result.getString("UTI_PRENOM"));
+		myUtilisateur.setUsername(result.getString("UTI_USERNAME"));
+		
+		return myUtilisateur;
 	}
-
 }

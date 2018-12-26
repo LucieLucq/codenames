@@ -19,12 +19,4 @@ public class Carte {
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	
-	public static Carte creerMot(int id, String libelle) {
-		Carte c=new Carte();
-		c.setId(id);
-		c.setLibelle(libelle);
-		return c;
-	}
-		
 }

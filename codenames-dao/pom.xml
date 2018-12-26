@@ -9,5 +9,10 @@
   		<artifactId>codenames-model</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
+  	<dependency>
+  		<groupId>fr.codenames</groupId>
+  		<artifactId>codenames-exception</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>

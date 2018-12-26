@@ -2,15 +2,15 @@ package fr.codenames.model;
 
 public class Message {
 	private int id;
-	private Joueur joueur;
 	private Partie partie;
-	
-	public Joueur getJoueur() {
-		return joueur;
+	private Joueur joueur;
+
+	public int getId() {
+		return id;
 	}
 
-	public void setJoueur(Joueur joueur) {
-		this.joueur = joueur;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Partie getPartie() {
@@ -21,11 +21,11 @@ public class Message {
 		this.partie = partie;
 	}
 
-	public int getId() {
-		return id;
+	public Joueur getJoueur() {
+		return joueur;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setJoueur(Joueur joueur) {
+		this.joueur = joueur;
 	}
 }
