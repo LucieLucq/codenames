@@ -2,9 +2,32 @@ package fr.codenames.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="grille")
 public class Grille {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="GRI_ID")
 	private int id;
+	
+	
 	private ArrayList<Case> cases;
+	
+	@ManyToOne
+	@JoinColumn(name="GRI_PARTIE_ID")
+	private ArrayList<Grille> grilles;
+	
+	
 	private Difficulte difficulte;
 
 	public int getId() {

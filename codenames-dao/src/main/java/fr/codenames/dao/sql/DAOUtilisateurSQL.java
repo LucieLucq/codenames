@@ -28,6 +28,10 @@ public class DAOUtilisateurSQL extends DAOSQL implements IDAOUtilisateur {
 
 	public Utilisateur save(Utilisateur entity) {
 		try {
+<<<<<<< Updated upstream
+=======
+			// gerer la modification d'un utilisateur
+>>>>>>> Stashed changes
 			this.connect();
 			String myQuery = "";
 			
@@ -63,6 +67,12 @@ public class DAOUtilisateurSQL extends DAOSQL implements IDAOUtilisateur {
 			}
 			
 			myStatement.execute();
+<<<<<<< Updated upstream
+=======
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+>>>>>>> Stashed changes
 		}
 		
 		catch (SQLIntegrityConstraintViolationException e) {

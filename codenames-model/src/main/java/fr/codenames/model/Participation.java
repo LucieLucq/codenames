@@ -1,8 +1,19 @@
 package fr.codenames.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="participation")
 public class Participation {
+	
+	
 	private Partie partie;
+	
+	
 	private Joueur joueur;
+	
+	
 	private Role role;
 
 	public Partie getPartie() {
