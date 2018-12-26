@@ -105,41 +105,54 @@ public class Principale {
 		int menu = 0;
 
 		do {
-			System.out.println("===================================");
-			System.out.println("|        MENU DE SELECTION         |");
-			System.out.println("|Actions possibles :               |");
-			System.out.println("|     1.	Voir les cartes        |");
-			System.out.println("2.	Ajouter une carte");
-			System.out.println("3	Modifier une carte");
-			System.out.println("4	Supprimer une carte");
-			System.out.println("5.	Démarrer une nouvelle partie");
-			System.out.println("6	Lister les parties");
-			System.out.println("7.	Se déconnecter");
-			System.out.println("===================================");
+			System.out.println("================================================");
+			System.out.println("|             MENU DE SELECTION                |");
+			System.out.println("|Actions possibles :                           |");
+			System.out.println("|           1.	Voir les cartes                |");
+			System.out.println("|           2.	Ajouter une carte              |");
+			System.out.println("|           3.  Modifier une carte             |");
+			System.out.println("|           4.  Supprimer une carte            |");
+			System.out.println("|           5.	Démarrer une nouvelle partie   |");
+			System.out.println("|           6.	Lister les parties             |");
+			System.out.println("|           7.	Se déconnecter                 |");
+			System.out.println("================================================");
+			System.out.println("Veuillez selectionner votre action : ");
 			menu = sc.nextInt();
 
 			switch (menu) {
 			case 1:
+				System.out.println("=> Action 1 selectionnée <= ");
+
 				showCartes();
 				break;
 
 			case 2:
+				System.out.println("=> Action 2 selectionnée <= ");
+
 				addCarte();
 				break;
 
 			case 3:
+				System.out.println("=> Action 3 selectionnée <= ");
+
 				editCarte();
 				break;
 
 			case 4:
+				System.out.println("=> Action 4 selectionnée <= ");
+
 				deleteCarte();
 				break;
 
 			case 6:
+				System.out.println("=> Action 6 selectionnée <= ");
+
 				showParties();
 				break;
 
 			case 7:
+				System.out.println("=> Action 7 selectionnée <= ");
+
 				utilisateur = null;
 				menu = 0;
 				System.out.println("Bye!");
