@@ -53,7 +53,9 @@ public class Principale {
 
 		try {
 			utilisateur = daoUtilisateur.auth(username, password);
+			System.out.println(" => Vous etes connecté ! ");
 			menu();
+			
 		}
 
 		catch (UsernameOrPasswordNotFoundException e) {
