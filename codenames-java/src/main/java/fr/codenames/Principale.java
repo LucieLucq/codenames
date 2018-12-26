@@ -109,6 +109,7 @@ public class Principale {
 		do {
 			System.out.println("================================================");
 			System.out.println("|             MENU DE SELECTION                |");
+			System.out.println("================================================");
 			System.out.println("|Actions possibles :                           |");
 			System.out.println("|           1.	Voir les cartes                |");
 			System.out.println("|           2.	Ajouter une carte              |");
