@@ -1,12 +1,12 @@
 package fr.codenames.model;
-
 import java.util.ArrayList;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -19,13 +19,14 @@ public class Partie {
 	@Column(name="PAR_ID")
 	private int id;
 	
-	@OneToMany(mappedBy="grilles")
+	@ManyToOne
+	@JoinColumn(name="PAR_GRILLE_ID")
 	private Grille grille;
 	
-	
+	@Column(name="PAR_CAPITAINE_ID")
 	private Joueur capitaine;
 	
-	
+	@OneToMany(mappedBy="partie")
 	private ArrayList<Message> messages;
 
 	public int getId() {

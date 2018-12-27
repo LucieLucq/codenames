@@ -1,19 +1,23 @@
 package fr.codenames.model;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="participation")
 public class Participation {
 	
-	
+	@ManyToOne
+	@JoinColumn(name="PTC_PARTIE_ID")
 	private Partie partie;
 	
-	
+	@ManyToOne
+	@JoinColumn(name="PTC_JOUEUR_ID")
 	private Joueur joueur;
 	
-	
+	@Column(name="PTC_ROLE")
 	private Role role;
 
 	public Partie getPartie() {

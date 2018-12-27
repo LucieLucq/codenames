@@ -1,7 +1,6 @@
 package fr.codenames.model;
-
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -28,11 +27,14 @@ public class Joueur extends Utilisateur {
 	private String pseudo;
 	
 	
-	//////////////////ANNOTATIONS POUR CET ATTRIBUT//////////////////
+	@Column(name="JOU_BANNI")
 	private boolean banni;
 
 	@OneToMany(mappedBy="joueur")
 	private ArrayList<Message> messages;
+	
+	@OneToMany(mappedBy="joueur")
+	private List<Participation> participations;
 	
 	public String getPseudo() {
 		return pseudo;

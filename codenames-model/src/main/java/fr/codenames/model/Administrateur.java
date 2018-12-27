@@ -1,5 +1,4 @@
 package fr.codenames.model;
-
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
