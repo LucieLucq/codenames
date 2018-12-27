@@ -2,6 +2,8 @@ package fr.codenames.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +24,8 @@ public class Case {
 	@JoinColumn(name="CAS_CARTE_ID")
 	private Carte carte;
 	
-	@Column(name="CAS_COULEUR")
+	@Enumerated(EnumType.ORDINAL)
+    @Column(name="CAS_COULEUR")
 	private Couleur couleur;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
@@ -54,4 +57,13 @@ public class Case {
 	public void setCouleur(Couleur couleur) {
 		this.couleur = couleur;
 	}
+
+	public Grille getGrille() {
+		return grille;
+	}
+
+	public void setGrille(Grille grille) {
+		this.grille = grille;
+	}
+
 }

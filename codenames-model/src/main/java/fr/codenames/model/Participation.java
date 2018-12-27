@@ -1,6 +1,8 @@
 package fr.codenames.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -17,7 +19,8 @@ public class Participation {
 	@JoinColumn(name="PTC_JOUEUR_ID")
 	private Joueur joueur;
 	
-	@Column(name="PTC_ROLE")
+	@Enumerated(EnumType.ORDINAL)
+    @Column(name="PTC_ROLE")
 	private Role role;
 
 	public Partie getPartie() {

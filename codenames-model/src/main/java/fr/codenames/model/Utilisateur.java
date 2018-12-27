@@ -9,9 +9,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 
-@MappedSuperclass
-@Table(name="utilisateur")
 
+@Table(name="utilisateur")
+@MappedSuperclass
 public abstract class Utilisateur {
 		
 	@Id

@@ -63,50 +63,31 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 		// TODO Auto-generated method stub
 	}
 
-	public Utilisateur auth(String username, String password) throws UsernameOrPasswordNotFoundException, AccountLockedException {
+	public Utilisateur auth(String username, String password)
+			throws UsernameOrPasswordNotFoundException, AccountLockedException {
 		try {
-		TypedQuery<Utilisateur> myQuery = em.createQuery("select u from Utilisateur u where u.username = :username AND u.nom = :password", Utilisateur.class);
-		
-		myQuery.setParameter("username", username);
-		myQuery.setParameter("password", password);
-		
-		System.out.println("Utilisateur connecté !");
-		return myQuery.getSingleResult();
-		
-		if (myResult.next()) {
-			Utilisateur myUtilisateur = this.map(myResult);
-		if (myUtilisateur.getType() == TypeUtilisateur.JOUEUR) {
-			if (((Joueur) myUtilisateur).isBanni()) {
-				throw new AccountLockedException();
-			}
-	}
-	catch (Exception exception){
-		System.out.println("Echec authentification.");
-	}
-		
-//			throws UsernameOrPasswordNotFoundException, AccountLockedException {
-//		try {
-//			this.connect();
-//			PreparedStatement myStatement = this.connection
-//					.prepareStatement("SELECT * FROM utilisateur WHERE UTI_USERNAME = ? AND UTI_PASSWORD = ?");
-//
-//			myStatement.setString(1, username);
-//			myStatement.setString(2, password);
-//			ResultSet myResult = myStatement.executeQuery();
-//
-//			if (myResult.next()) {
-//				Utilisateur myUtilisateur = this.map(myResult);
+			TypedQuery<Utilisateur> myQuery = em.createQuery(
+					"select u from Utilisateur u where u.username = :username AND u.password = :password",
+					Utilisateur.class);
 
-				if (myUtilisateur.getType() == TypeUtilisateur.JOUEUR) {
-					if (((Joueur) myUtilisateur).isBanni()) {
+			myQuery.setParameter("username", username);
+			myQuery.setParameter("password", password);
+
+			ResultSet myResult = (ResultSet) myQuery.getSingleResult();
+			
+			 if (myResult.next()) {
+				Utilisateur monUtilisateur = this.map(myResult);
+
+				if (monUtilisateur.getType() == TypeUtilisateur.JOUEUR) {
+					if (((Joueur) monUtilisateur).isBanni()) {
 						throw new AccountLockedException();
 					}
 				}
 
-				return myUtilisateur;
+				return monUtilisateur;
 			}
 		}
-
+	
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -114,25 +95,28 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 		throw new UsernameOrPasswordNotFoundException();
 	}
 
+	
+	
+
 	public Utilisateur map(ResultSet result) throws SQLException {
-		Utilisateur myUtilisateur = null;
+		Utilisateur monUtilisateur = null;
 
 		if (result.getInt("UTI_TYPE") == TypeUtilisateur.JOUEUR.ordinal()) {
-			myUtilisateur = new Joueur();
-			((Joueur) myUtilisateur).setPseudo(result.getString("UTI_PSEUDO"));
-			((Joueur) myUtilisateur).setBanni(result.getBoolean("UTI_BANNI"));
+			monUtilisateur = new Joueur();
+			((Joueur) monUtilisateur).setPseudo(result.getString("UTI_PSEUDO"));
+			((Joueur) monUtilisateur).setBanni(result.getBoolean("UTI_BANNI"));
 		}
 
 		else {
-			myUtilisateur = new Administrateur();
+			monUtilisateur = new Administrateur();
 		}
 
 		// ASSOCIER LES VALEURS DE LA DB A L'OBJET
-		myUtilisateur.setId(result.getInt("UTI_ID"));
-		myUtilisateur.setNom(result.getString("UTI_NOM"));
-		myUtilisateur.setPrenom(result.getString("UTI_PRENOM"));
-		myUtilisateur.setUsername(result.getString("UTI_USERNAME"));
+		monUtilisateur.setId(result.getInt("UTI_ID"));
+		monUtilisateur.setNom(result.getString("UTI_NOM"));
+		monUtilisateur.setPrenom(result.getString("UTI_PRENOM"));
+		monUtilisateur.setUsername(result.getString("UTI_USERNAME"));
 
-		return myUtilisateur;
+		return monUtilisateur;
 	}
 }

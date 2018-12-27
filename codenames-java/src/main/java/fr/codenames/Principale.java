@@ -2,12 +2,18 @@ package fr.codenames;
 
 import java.util.Scanner;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import fr.codenames.dao.IDAOCarte;
 import fr.codenames.dao.IDAOPartie;
 import fr.codenames.dao.IDAOUtilisateur;
-import fr.codenames.dao.sql.DAOCarteSQL;
-import fr.codenames.dao.sql.DAOPartieSQL;
-import fr.codenames.dao.sql.DAOUtilisateurSQL;
+import fr.codenames.dao.sql.DAOCarteJPA;
+
+import fr.codenames.dao.sql.DAOPartieJPA;
+
+import fr.codenames.dao.sql.DAOUtilisateurJPA;
+
 import fr.codenames.exception.AccountLockedException;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 import fr.codenames.model.Carte;
@@ -17,18 +23,18 @@ import fr.codenames.model.Utilisateur;
 import fr.codenames.exception.NonUniqueUsernameException;
 
 public class Principale {
-	private static IDAOUtilisateur daoUtilisateur = new DAOUtilisateurSQL();
-	private static IDAOCarte daoCarte = new DAOCarteSQL();
-	private static IDAOPartie daoPartie = new DAOPartieSQL();
-	private static Utilisateur utilisateur;
-	private static Scanner sc;
+	public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("NomPersistenceUnit");
 
-	/**
-	 * Programme principal
-	 * 
-	 * @param args
-	 */
+	public static DAOUtilisateurJPA daoUtilisateur = new DAOUtilisateurJPA(emf);
+	
+	public static IDAOCarte daoCarte = new DAOCarteJPA(emf);
+	public static IDAOPartie daoPartie = new DAOPartieJPA(emf);
+	public static Utilisateur utilisateur;
+	public static Scanner sc;
 	public static void main(String[] args) {
+		
+		
+
 		sc = new Scanner(System.in);
 
 		connexion();
@@ -42,7 +48,7 @@ public class Principale {
 	public static void connexion() {
 		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
 		String username = sc.nextLine();
-		
+
 		if (username.equals("")) {
 			inscription();
 			return;
@@ -55,7 +61,7 @@ public class Principale {
 			utilisateur = daoUtilisateur.auth(username, password);
 			System.out.println(" => Vous etes connecté ! ");
 			menu();
-			
+
 		}
 
 		catch (UsernameOrPasswordNotFoundException e) {
@@ -71,32 +77,31 @@ public class Principale {
 	 * S'inscrire (créer un nouveau compte utilisateur)
 	 */
 	public static void inscription() {
-		Joueur myJoueur = new Joueur();
-		
+		Joueur nouveauJoueur = new Joueur();
+
 		System.out.print("Indiquer votre nom : ");
-		myJoueur.setNom(sc.nextLine());
-		
+		nouveauJoueur.setNom(sc.nextLine());
+
 		System.out.print("Indiquer votre prénom : ");
-		myJoueur.setPrenom(sc.nextLine());
+		nouveauJoueur.setPrenom(sc.nextLine());
 
 		System.out.print("Indiquer votre pseudo : ");
-		myJoueur.setPseudo(sc.nextLine());
-		
+		nouveauJoueur.setPseudo(sc.nextLine());
+
 		System.out.print("Indiquer le nom d'utilisateur : ");
-		myJoueur.setUsername(sc.nextLine());
+		nouveauJoueur.setUsername(sc.nextLine());
 
 		System.out.print("Indiquer le mot de passe : ");
-		myJoueur.setPassword(sc.nextLine());
-		
-		
+		nouveauJoueur.setPassword(sc.nextLine());
+
 		try {
-			daoUtilisateur.save(myJoueur);
+			daoUtilisateur.save(nouveauJoueur);
 		}
-		
+
 		catch (NonUniqueUsernameException e) {
 			System.out.println("Le nom d'utilisateur est déjà utilisé !");
 		}
-		
+
 		connexion();
 	}
 
