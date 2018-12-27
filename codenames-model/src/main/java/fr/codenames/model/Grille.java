@@ -1,5 +1,7 @@
 package fr.codenames.model;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,10 +23,10 @@ public class Grille {
 	private int id;
 	
 	@OneToMany(mappedBy="grille")
-	private ArrayList<Case> cases;
+	private List<Case> cases;
 	
 	@OneToMany(mappedBy="grille")
-	private ArrayList<Partie> parties;
+	private List<Partie> parties;
 	
 	@Enumerated(EnumType.ORDINAL)
     @Column(name="GRI_DIFFICULTE")
@@ -38,11 +40,11 @@ public class Grille {
 		this.id = id;
 	}
 
-	public ArrayList<Case> getCases() {
+	public List<Case> getCases() {
 		return cases;
 	}
 
-	public void setCases(ArrayList<Case> cases) {
+	public void setCases(List<Case> cases) {
 		this.cases = cases;
 	}
 

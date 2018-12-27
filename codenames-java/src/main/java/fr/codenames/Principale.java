@@ -31,6 +31,7 @@ public class Principale {
 	public static IDAOPartie daoPartie = new DAOPartieJPA(emf);
 	public static Utilisateur utilisateur;
 	public static Scanner sc;
+	
 	public static void main(String[] args) {
 		
 		

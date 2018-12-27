@@ -31,7 +31,7 @@ public class Joueur extends Utilisateur {
 	private boolean banni;
 
 	@OneToMany(mappedBy="joueur")
-	private ArrayList<Message> messages;
+	private List<Message> messages;
 	
 	@OneToMany(mappedBy="joueur")
 	private List<Participation> participations;

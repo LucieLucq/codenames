@@ -1,5 +1,7 @@
 package fr.codenames.model;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="partie")
@@ -23,11 +26,12 @@ public class Partie {
 	@JoinColumn(name="PAR_GRILLE_ID")
 	private Grille grille;
 	
+	@Transient
 	@Column(name="PAR_CAPITAINE_ID")
 	private Joueur capitaine;
 	
 	@OneToMany(mappedBy="partie")
-	private ArrayList<Message> messages;
+	private List<Message> messages;
 
 	public int getId() {
 		return id;
@@ -53,7 +57,7 @@ public class Partie {
 		this.capitaine = capitaine;
 	}
 
-	public ArrayList<Message> getMessages() {
+	public List<Message> getMessages() {
 		return messages;
 	}
 

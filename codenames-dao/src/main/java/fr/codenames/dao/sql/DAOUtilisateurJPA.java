@@ -63,60 +63,101 @@ public class DAOUtilisateurJPA extends DAOJPA implements IDAOUtilisateur {
 		// TODO Auto-generated method stub
 	}
 
-	public Utilisateur auth(String username, String password)
-			throws UsernameOrPasswordNotFoundException, AccountLockedException {
-		try {
-			TypedQuery<Utilisateur> myQuery = em.createQuery(
-					"select u from Utilisateur u where u.username = :username AND u.password = :password",
-					Utilisateur.class);
+	public void connexion() {
 
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Saisir votre nom d'utilisateur : ");
+		String username = sc.nextLine();
+		System.out.print("Saisir votre mot de passe : ");
+		String motDePasse = sc.nextLine();
+
+		try {
+			Query myQuery = em.createQuery("select u.password from Utilisateur u where u.username = :username");
 			myQuery.setParameter("username", username);
-			myQuery.setParameter("password", password);
 
 			ResultSet myResult = (ResultSet) myQuery.getSingleResult();
-			
-			 if (myResult.next()) {
-				Utilisateur monUtilisateur = this.map(myResult);
 
-				if (monUtilisateur.getType() == TypeUtilisateur.JOUEUR) {
-					if (((Joueur) monUtilisateur).isBanni()) {
+			if (myResult.next()) {
+				String MDP = myResult.getString(1);
+				if (MDP.equals(motDePasse)) {
+					if (Joueur.isBanni()) {
 						throw new AccountLockedException();
 					}
-				}
+					System.out.println("Connexion réussie");
+				} 
+				
+				else {
+					System.out.println("Mot de Passe incorrect");
 
-				return monUtilisateur;
+				}
+			} 
+			else {
+				System.out.println("Nom d'utilisateur incorrect");
 			}
-		}
-	
-		catch (SQLException e) {
+			myResult = (ResultSet) myQuery.getSingleResult();
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
-		throw new UsernameOrPasswordNotFoundException();
 	}
-
 	
 	
-
-	public Utilisateur map(ResultSet result) throws SQLException {
-		Utilisateur monUtilisateur = null;
-
-		if (result.getInt("UTI_TYPE") == TypeUtilisateur.JOUEUR.ordinal()) {
-			monUtilisateur = new Joueur();
-			((Joueur) monUtilisateur).setPseudo(result.getString("UTI_PSEUDO"));
-			((Joueur) monUtilisateur).setBanni(result.getBoolean("UTI_BANNI"));
-		}
-
-		else {
-			monUtilisateur = new Administrateur();
-		}
-
-		// ASSOCIER LES VALEURS DE LA DB A L'OBJET
-		monUtilisateur.setId(result.getInt("UTI_ID"));
-		monUtilisateur.setNom(result.getString("UTI_NOM"));
-		monUtilisateur.setPrenom(result.getString("UTI_PRENOM"));
-		monUtilisateur.setUsername(result.getString("UTI_USERNAME"));
-
-		return monUtilisateur;
-	}
+	
+//	public Utilisateur auth(String username, String password)
+//			throws UsernameOrPasswordNotFoundException, AccountLockedException {
+//		try {
+//			TypedQuery<Utilisateur> myQuery = em.createQuery(
+//					"select u from Utilisateur u where u.username = :username AND u.password = :password",
+//					Utilisateur.class);
+//
+//			myQuery.setParameter("username", username);
+//			myQuery.setParameter("password", password);
+//
+//			ResultSet myResult = (ResultSet) myQuery.getSingleResult();
+//			
+//			 if (myResult.next()) {
+//				Utilisateur monUtilisateur = this.map(myResult);
+//
+//				if (monUtilisateur. == TypeUtilisateur.JOUEUR) {
+//					if (((Joueur) monUtilisateur).isBanni()) {
+//						throw new AccountLockedException();
+//					}
+//				}
+//
+//				return monUtilisateur;
+//			}
+//		}
+//	
+//		catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//
+//		throw new UsernameOrPasswordNotFoundException();
+//	}
+//
+//	
+//	
+//
+//	public Utilisateur map(ResultSet result) throws SQLException {
+//		Utilisateur monUtilisateur = null;
+//
+//		if (result.getInt("UTI_TYPE") == TypeUtilisateur.JOUEUR.ordinal()) {
+//			monUtilisateur = new Joueur();
+//			((Joueur) monUtilisateur).setPseudo(result.getString("JOU_PSEUDO"));
+//			((Joueur) monUtilisateur).setBanni(result.getBoolean("JOU_BANNI"));
+//			//((Joueur) monUtilisateur).setId(result.getInt(monUtilisateur.getId());
+//		}
+//
+//		else {
+//			monUtilisateur = new Administrateur();
+//		}
+//
+//		// ASSOCIER LES VALEURS DE LA DB A L'OBJET
+//		monUtilisateur.setId(result.getInt("UTI_ID"));
+//		monUtilisateur.setNom(result.getString("UTI_NOM"));
+//		monUtilisateur.setPrenom(result.getString("UTI_PRENOM"));
+//		monUtilisateur.setUsername(result.getString("UTI_USERNAME"));
+//
+//		return monUtilisateur;
+//	}
 }
