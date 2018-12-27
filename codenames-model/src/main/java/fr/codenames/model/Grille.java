@@ -20,8 +20,7 @@ public class Grille {
 	@Column(name="GRI_ID")
 	private int id;
 	
-	@OneToMany
-	@JoinColumn(name="GRI_CASE_ID")
+	@OneToMany(mappedBy="grille")
 	private ArrayList<Case> cases;
 	
 	@OneToMany(mappedBy="grille")
