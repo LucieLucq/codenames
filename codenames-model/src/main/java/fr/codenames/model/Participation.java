@@ -27,6 +27,10 @@ public class Participation {
 	@JoinColumn(name="PTC_JOUEUR_ID")
 	private Joueur joueur;
 	
+	@Enumerated(EnumType.ORDINAL)
+    @Column(name="PTC_ROLE")
+	private Role role;
+
 	public int getId() {
 		return id;
 	}
@@ -35,9 +39,6 @@ public class Participation {
 		this.id = id;
 	}
 
-	@Enumerated(EnumType.ORDINAL)
-    @Column(name="PTC_ROLE")
-	private Role role;
 
 	public Partie getPartie() {
 		return partie;

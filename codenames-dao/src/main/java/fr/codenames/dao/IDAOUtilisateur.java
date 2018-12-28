@@ -13,5 +13,6 @@ public interface IDAOUtilisateur extends IDAO<Utilisateur> {
 	 * @throws UsernameOrPasswordNotFoundException
 	 * @throws AccountLockedException
 	 */
-	public Utilisateur auth(String username, String password) throws UsernameOrPasswordNotFoundException, AccountLockedException;
+	public Utilisateur connexion(String username,String motDePasse) throws AccountLockedException, UsernameOrPasswordNotFoundException ;
+		
 }

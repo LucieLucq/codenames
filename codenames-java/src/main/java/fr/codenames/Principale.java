@@ -25,28 +25,54 @@ import fr.codenames.exception.NonUniqueUsernameException;
 public class Principale {
 	public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("NomPersistenceUnit");
 
-	public static DAOUtilisateurJPA daoUtilisateur = new DAOUtilisateurJPA(emf);
-	
+	public static IDAOUtilisateur daoUtilisateur = new DAOUtilisateurJPA(emf);
 	public static IDAOCarte daoCarte = new DAOCarteJPA(emf);
 	public static IDAOPartie daoPartie = new DAOPartieJPA(emf);
 	public static Utilisateur utilisateur;
 	public static Scanner sc;
 	
 	public static void main(String[] args) {
-		
-		
-
+		inscription();
+		emf.close() ;
+	}
+		public static void ConnexionUtilisateur(){
+	    sc = new Scanner(System.in);
+		System.out.print("Saisir votre nom d'utilisateur : ");
+		String username = sc.nextLine();
+		System.out.print("Saisir votre mot de passe : ");
+		String motDePasse = sc.nextLine();
+		try {
+		daoUtilisateur.connexion(username,motDePasse);
+		System.out.println("Vous etes connecté !");
+		menu() ;
+		}
+		catch (AccountLockedException e) {
+			System.out.println("Vous etes banni !");
+		}
+		catch (UsernameOrPasswordNotFoundException e) {
+			System.out.println("Mot de passe ou username incorrect !");
+		}
+		finally {
+		sc.close();
+		emf.close();}
+		}
+	
+	
+	public static void RechercheCarte(){
 		sc = new Scanner(System.in);
-
-		connexion();
+		System.out.print("Saisir votre mot : ");
+		String mot = sc.nextLine();
+		daoCarte.findByMot(mot);
 
 		sc.close();
-	}
+		emf.close();
+		}
+		
 
 	/**
 	 * Se connecter avec un nom d'utilisateur et un mot de passe (à saisir)
 	 */
-	public static void connexion() {
+	public static void connection() {
 		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
 		String username = sc.nextLine();
 
@@ -59,7 +85,7 @@ public class Principale {
 		String password = sc.nextLine();
 
 		try {
-			utilisateur = daoUtilisateur.auth(username, password);
+			utilisateur = daoUtilisateur.connexion(username, password);
 			System.out.println(" => Vous etes connecté ! ");
 			menu();
 
@@ -78,22 +104,25 @@ public class Principale {
 	 * S'inscrire (créer un nouveau compte utilisateur)
 	 */
 	public static void inscription() {
-		Joueur nouveauJoueur = new Joueur();
-
+		Joueur nouveauJoueur=new Joueur();
+		
+		sc = new Scanner(System.in);
 		System.out.print("Indiquer votre nom : ");
 		nouveauJoueur.setNom(sc.nextLine());
 
 		System.out.print("Indiquer votre prénom : ");
 		nouveauJoueur.setPrenom(sc.nextLine());
 
+		System.out.print("Indiquer le nom d'utilisateur : ");
+		nouveauJoueur.setUsername(sc.nextLine());
+		
+		System.out.print("Indiquer le mot de passe : ");
+		nouveauJoueur.setPassword(sc.nextLine());
+		
 		System.out.print("Indiquer votre pseudo : ");
 		nouveauJoueur.setPseudo(sc.nextLine());
 
-		System.out.print("Indiquer le nom d'utilisateur : ");
-		nouveauJoueur.setUsername(sc.nextLine());
-
-		System.out.print("Indiquer le mot de passe : ");
-		nouveauJoueur.setPassword(sc.nextLine());
+		nouveauJoueur.setBanni(false);
 
 		try {
 			daoUtilisateur.save(nouveauJoueur);
@@ -103,9 +132,9 @@ public class Principale {
 			System.out.println("Le nom d'utilisateur est déjà utilisé !");
 		}
 
-		connexion();
+		ConnexionUtilisateur();
 	}
-
+	
 	/**
 	 * Affiche le menu et démarre les sous-programmes
 	 */

@@ -1,22 +1,12 @@
 package fr.codenames.dao.sql;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-
 import fr.codenames.dao.IDAOPartie;
-import fr.codenames.model.Grille;
-import fr.codenames.model.Joueur;
 import fr.codenames.model.Partie;
-import fr.codenames.model.Utilisateur;
 
-public class DAOPartieJPA extends DAOJPA implements IDAOPartie {
+public class DAOPartieJPA implements IDAOPartie {
 private EntityManager em;
 	
 	
@@ -24,7 +14,7 @@ private EntityManager em;
 		this.em = emf.createEntityManager();
 	}
 	
-	public Partie map(ResultSet result) throws SQLException {
+	/*public Partie map(ResultSet result) throws SQLException {
 		Partie myPartie = new Partie();
 		
 		//ASSOCIER LES VALEURS DE LA DB A L'OBJET
@@ -37,7 +27,7 @@ private EntityManager em;
 		myPartie.getCapitaine().setId(result.getInt("PAR_CAPITAINE_ID"));
 		
 		return myPartie;
-	}
+	}*/
 	
 	
 	public List<Partie> findAll() {
