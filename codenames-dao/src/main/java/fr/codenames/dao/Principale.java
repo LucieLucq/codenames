@@ -1,13 +1,10 @@
-package fr.codenames;
+package fr.codenames.dao;
 
 import java.util.Scanner;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import fr.codenames.dao.IDAOCarte;
-import fr.codenames.dao.IDAOPartie;
-import fr.codenames.dao.IDAOUtilisateur;
 import fr.codenames.dao.sql.DAOCarteJPA;
 
 import fr.codenames.dao.sql.DAOPartieJPA;
