@@ -87,6 +87,11 @@ public class DAOUtilisateurJPA implements IDAOUtilisateur {
 		}
 
 	}
+
+	public Utilisateur findByLibelle(String Libelle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 

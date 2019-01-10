@@ -61,14 +61,15 @@ public class DAOCarteJPA implements IDAOCarte {
 		em.remove(em.merge(entity));
 	}
 
-	public Carte findByMot(String mot) {
+	public Carte findByLibelle(String libelle) {
 		Carte maCarte;
 		TypedQuery<Carte> myQuery = em.createQuery("select c from Carte c where c.libelle = :libelle ", Carte.class);
-		myQuery.setParameter("libelle", mot);
+		myQuery.setParameter("libelle", libelle);
 		maCarte = myQuery.getSingleResult();
 		System.out.print(
 				" => Carte trouvée ! <= " + "\n" + "La carte est " + maCarte.getId() + " : " + maCarte.getLibelle());
 		return maCarte;
 	}
+
 
 }

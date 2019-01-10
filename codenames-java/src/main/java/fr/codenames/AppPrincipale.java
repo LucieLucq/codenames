@@ -1,38 +1,42 @@
-package fr.codenames.dao;
-
+package fr.codenames;
 import java.util.Scanner;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import javax.persistence.NoResultException;
+import javax.persistence.TypedQuery;
 
-import fr.codenames.dao.sql.DAOCarteJPA;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import fr.codenames.dao.sql.DAOPartieJPA;
-
-import fr.codenames.dao.sql.DAOUtilisateurJPA;
-
+import fr.codenames.data.jpa.IDAOCarte;
+import fr.codenames.data.jpa.IDAOPartie;
+import fr.codenames.data.jpa.IDAOUtilisateur;
 import fr.codenames.exception.AccountLockedException;
+import fr.codenames.exception.NonUniqueUsernameException;
 import fr.codenames.exception.UsernameOrPasswordNotFoundException;
 import fr.codenames.model.Carte;
 import fr.codenames.model.Joueur;
 import fr.codenames.model.Partie;
 import fr.codenames.model.Utilisateur;
-import fr.codenames.exception.NonUniqueUsernameException;
 
-public class Principale {
-	public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("NomPersistenceUnit");
-
-	public static IDAOUtilisateur daoUtilisateur = new DAOUtilisateurJPA(emf);
-	public static IDAOCarte daoCarte = new DAOCarteJPA(emf);
-	public static IDAOPartie daoPartie = new DAOPartieJPA(emf);
+public class AppPrincipale {
+	@Autowired
+	public static IDAOUtilisateur daoUtilisateur ;
+	@Autowired
+	public static IDAOCarte daoCarte ;
+	@Autowired
+	public static IDAOPartie daoPartie;
+	@Autowired
 	public static Utilisateur utilisateur;
+	@Autowired
 	public static Scanner sc;
 	
-	public static void main(String[] args) {
-		ConnexionUtilisateur();
+	
+	public void run(String[] args) {
+		RechercheCarte();
+//		ConnexionUtilisateur();
 //		inscription();
 //		emf.close() ;
 	}
+	
 		public static void ConnexionUtilisateur(){
 	    sc = new Scanner(System.in);
 		System.out.print("Saisir votre nom d'utilisateur : ");
@@ -52,18 +56,54 @@ public class Principale {
 		}
 		finally {
 		sc.close();
-		emf.close();}
 		}
-	
+		}
+		
+		public Utilisateur connexion(String username, String motDePasse)
+				throws AccountLockedException, UsernameOrPasswordNotFoundException {
+
+			// JPQL -> entityManager
+			// Ajouter les paramètres (username, mdp)
+			// Récupérer l'Utilisateur -> UN SEUL UTILISATEUR
+			// SI YA PAS DUSER -> EXCEPTION DE TYPE NoResultException
+			// SI CA CATCH PAS, CEST QUE LUSER EXISTE
+			
+			Utilisateur monUtilisateur;
+			try {
+				TypedQuery<Utilisateur> myQuery = em.createQuery(
+						"select u from Utilisateur u where u.username = :username AND u.password = :password",
+						Utilisateur.class);
+				myQuery.setParameter("username", username);
+				myQuery.setParameter("password", motDePasse);
+
+				monUtilisateur = myQuery.getSingleResult();
+				if (monUtilisateur instanceof Joueur) {
+					if (((Joueur) monUtilisateur).isBanni()) {
+
+						throw new AccountLockedException();
+
+					}
+
+				}
+
+				return monUtilisateur;
+
+			} catch (NoResultException e) {
+
+				throw new UsernameOrPasswordNotFoundException();
+
+			}
+
+		}
 	
 	public static void RechercheCarte(){
 		sc = new Scanner(System.in);
 		System.out.print("Saisir votre mot : ");
-		String libelle = sc.nextLine();
+		String libelle= sc.nextLine();
 		daoCarte.findByLibelle(libelle);
 
 		sc.close();
-		emf.close();
+	
 		}
 		
 
@@ -171,7 +211,7 @@ public class Principale {
 			case 3:
 				System.out.println("=> Action 3 selectionnée <= ");
 
-				editCarte();
+				//editCarte();
 				break;
 
 			case 4:
@@ -221,17 +261,17 @@ public class Principale {
 	/**
 	 * Modifier une carte
 	 */
-	public static void editCarte() {
-		showCartes();
-
-		System.out.println("Choisir la carte à modifier : ");
-		Carte myCarte = daoCarte.findById(sc.nextInt());
-
-		System.out.println(String.format("Saisir le libellé de la carte [%s]", myCarte.getLibelle()));
-		myCarte.setLibelle(sc.next());
-
-		daoCarte.save(myCarte);
-	}
+//	public static void editCarte() {
+//		showCartes();
+//
+//		System.out.println("Choisir la carte à modifier : ");
+//		Carte myCarte = daoCarte.findById(sc.nextInt());
+//
+//		System.out.println(String.format("Saisir le libellé de la carte [%s]", myCarte.getLibelle()));
+//		myCarte.setLibelle(sc.next());
+//
+//		daoCarte.save(myCarte);
+//	}
 
 	/**
 	 * Supprimer une carte

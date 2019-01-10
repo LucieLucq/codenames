@@ -67,4 +67,9 @@ private EntityManager em;
 	public void delete(Partie entity) {
 		em.remove(em.merge(entity));
 	}
+
+	public Partie findByLibelle(String Libelle) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

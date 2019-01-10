@@ -35,4 +35,5 @@ public interface IDAO<T> {
 	 * @param id
 	 */
 	public void deleteById(int id);
+	public T findByLibelle(String Libelle);
 }
