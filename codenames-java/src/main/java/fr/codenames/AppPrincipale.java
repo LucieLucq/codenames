@@ -22,28 +22,17 @@ import fr.codenames.model.Utilisateur;
 
 public class AppPrincipale {
 	@Autowired
-	public static IDAOUtilisateur daoUtilisateur;
+	public IDAOUtilisateur daoUtilisateur;
 	@Autowired
-	public static IDAOCarte daoCarte;
+	public  IDAOCarte daoCarte;
 	@Autowired
-	public static IDAOPartie daoPartie;
-	@Autowired
-	public static Utilisateur utilisateur;
-	@Autowired
-	public static Scanner sc;
+	public IDAOPartie daoPartie;
+
+	public Scanner sc;
 
 	public void run(String[] args) {
-
-		
-		try {
-			connexion("DupJean", "Dup15");
-		} catch (AccountLockedException e) {
-		
-			e.printStackTrace();
-		} catch (UsernameOrPasswordNotFoundException e) {
-		
-			e.printStackTrace();
-		}
+//		InterfaceConnexion();
+		inscription();
 	}
 
 	public void InterfaceConnexion() {
@@ -54,7 +43,7 @@ public class AppPrincipale {
 		String motDePasse = sc.nextLine();
 		try {
 			connexion(username, motDePasse);
-			System.out.println("Vous etes connecté !");
+			System.out.println("Vous etes connecte !");
 			menu();
 		} catch (AccountLockedException e) {
 			System.out.println("Vous etes banni !");
@@ -97,39 +86,9 @@ public class AppPrincipale {
 
 	}
 
-	/**
-	 * Se connecter avec un nom d'utilisateur et un mot de passe (à saisir)
-	 */
-//	public void connection() {
-//		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
-//		String username = sc.nextLine();
-//
-//		if (username.equals("")) {
-//			inscription();
-//			return;
-//		}
-//
-//		System.out.print("Indiquer le mot de passe : ");
-//		String password = sc.nextLine();
-//
-//		try {
-//			utilisateur = daoUtilisateur.connexion(username, password);
-//			System.out.println(" => Vous etes connecté ! ");
-//			menu();
-//
-//		}
-//
-//		catch (UsernameOrPasswordNotFoundException e) {
-//			System.out.println("MAUVAIS USERNAME OU PASSWORD !!");
-//		}
-//
-//		catch (AccountLockedException e) {
-//			System.out.println("COMPTE BLOQUE ... SORRY !");
-//		}
-//	}
 
 	/**
-	 * S'inscrire (créer un nouveau compte utilisateur)
+	 * S'inscrire (creer un nouveau compte utilisateur)
 	 */
 	public void inscription() {
 		Joueur nouveauJoueur = new Joueur();
@@ -138,7 +97,7 @@ public class AppPrincipale {
 		System.out.print("Indiquer votre nom : ");
 		nouveauJoueur.setNom(sc.nextLine());
 
-		System.out.print("Indiquer votre prénom : ");
+		System.out.print("Indiquer votre prenom : ");
 		nouveauJoueur.setPrenom(sc.nextLine());
 
 		System.out.print("Indiquer le nom d'utilisateur : ");
@@ -157,14 +116,14 @@ public class AppPrincipale {
 		}
 
 		catch (NonUniqueUsernameException e) {
-			System.out.println("Le nom d'utilisateur est déjà utilisé !");
+			System.out.println("Le nom d'utilisateur est deja utilise !");
 		}
 
 		InterfaceConnexion();
 	}
 
 	/**
-	 * Affiche le menu et démarre les sous-programmes
+	 * Affiche le menu et dï¿½marre les sous-programmes
 	 */
 	public void menu() {
 		int menu = 0;
@@ -178,48 +137,48 @@ public class AppPrincipale {
 			System.out.println("|           2.	Ajouter une carte              |");
 			System.out.println("|           3.  Modifier une carte             |");
 			System.out.println("|           4.  Supprimer une carte            |");
-			System.out.println("|           5.	Démarrer une nouvelle partie   |");
+			System.out.println("|           5.	Demarrer une nouvelle partie   |");
 			System.out.println("|           6.	Lister les parties             |");
-			System.out.println("|           7.	Se déconnecter                 |");
+			System.out.println("|           7.	Se deconnecter                 |");
 			System.out.println("================================================");
 			System.out.println("Veuillez selectionner votre action : ");
 			menu = sc.nextInt();
 
 			switch (menu) {
 			case 1:
-				System.out.println("=> Action 1 selectionnée <= ");
+				System.out.println("=> Action 1 selectionnee <= ");
 
 				showCartes();
 				break;
 
 			case 2:
-				System.out.println("=> Action 2 selectionnée <= ");
+				System.out.println("=> Action 2 selectionnee <= ");
 
 				addCarte();
 				break;
 
 			case 3:
-				System.out.println("=> Action 3 selectionnée <= ");
+				System.out.println("=> Action 3 selectionnee <= ");
 
 				// editCarte();
 				break;
 
 			case 4:
-				System.out.println("=> Action 4 selectionnée <= ");
+				System.out.println("=> Action 4 selectionnee <= ");
 
 				deleteCarte();
 				break;
 
 			case 6:
-				System.out.println("=> Action 6 selectionnée <= ");
+				System.out.println("=> Action 6 selectionnee <= ");
 
 				showParties();
 				break;
 
 			case 7:
-				System.out.println("=> Action 7 selectionnée <= ");
+				System.out.println("=> Action 7 selectionnee <= ");
 
-				utilisateur = null;
+				daoUtilisateur = null;
 				menu = 0;
 				System.out.println("Bye!");
 				break;
@@ -242,7 +201,7 @@ public class AppPrincipale {
 	public void addCarte() {
 		Carte myCarte = new Carte();
 
-		System.out.println("Saisir le libellé de la carte :");
+		System.out.println("Saisir le libellï¿½ de la carte :");
 		myCarte.setLibelle(sc.next());
 
 		daoCarte.save(myCarte);
@@ -254,10 +213,10 @@ public class AppPrincipale {
 //	public static void editCarte() {
 //		showCartes();
 //
-//		System.out.println("Choisir la carte à modifier : ");
+//		System.out.println("Choisir la carte ï¿½ modifier : ");
 //		Carte myCarte = daoCarte.findById(sc.nextInt());
 //
-//		System.out.println(String.format("Saisir le libellé de la carte [%s]", myCarte.getLibelle()));
+//		System.out.println(String.format("Saisir le libellï¿½ de la carte [%s]", myCarte.getLibelle()));
 //		myCarte.setLibelle(sc.next());
 //
 //		daoCarte.save(myCarte);
@@ -269,7 +228,7 @@ public class AppPrincipale {
 	public void deleteCarte() {
 		showCartes();
 
-		System.out.println("Choisir la carte à supprimer : ");
+		System.out.println("Choisir la carte ï¿½ supprimer : ");
 		daoCarte.deleteById(sc.nextInt());
 	}
 
