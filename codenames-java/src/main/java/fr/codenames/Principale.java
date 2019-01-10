@@ -32,8 +32,9 @@ public class Principale {
 	public static Scanner sc;
 	
 	public static void main(String[] args) {
-		inscription();
-		emf.close() ;
+		ConnexionUtilisateur();
+//		inscription();
+//		emf.close() ;
 	}
 		public static void ConnexionUtilisateur(){
 	    sc = new Scanner(System.in);
