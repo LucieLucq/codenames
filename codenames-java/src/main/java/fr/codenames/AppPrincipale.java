@@ -1,10 +1,13 @@
 package fr.codenames;
+
 import java.util.Scanner;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import fr.codenames.data.jpa.IDAOCarte;
 import fr.codenames.data.jpa.IDAOPartie;
@@ -19,131 +22,118 @@ import fr.codenames.model.Utilisateur;
 
 public class AppPrincipale {
 	@Autowired
-	public static IDAOUtilisateur daoUtilisateur ;
+	public static IDAOUtilisateur daoUtilisateur;
 	@Autowired
-	public static IDAOCarte daoCarte ;
+	public static IDAOCarte daoCarte;
 	@Autowired
 	public static IDAOPartie daoPartie;
 	@Autowired
 	public static Utilisateur utilisateur;
 	@Autowired
 	public static Scanner sc;
-	
-	
+
 	public void run(String[] args) {
-		RechercheCarte();
-//		ConnexionUtilisateur();
-//		inscription();
-//		emf.close() ;
+
+		
+		try {
+			connexion("DupJean", "Dup15");
+		} catch (AccountLockedException e) {
+		
+			e.printStackTrace();
+		} catch (UsernameOrPasswordNotFoundException e) {
+		
+			e.printStackTrace();
+		}
 	}
-	
-		public static void ConnexionUtilisateur(){
-	    sc = new Scanner(System.in);
+
+	public void InterfaceConnexion() {
+		sc = new Scanner(System.in);
 		System.out.print("Saisir votre nom d'utilisateur : ");
 		String username = sc.nextLine();
 		System.out.print("Saisir votre mot de passe : ");
 		String motDePasse = sc.nextLine();
 		try {
-		daoUtilisateur.connexion(username,motDePasse);
-		System.out.println("Vous etes connecté !");
-		menu() ;
-		}
-		catch (AccountLockedException e) {
+			connexion(username, motDePasse);
+			System.out.println("Vous etes connecté !");
+			menu();
+		} catch (AccountLockedException e) {
 			System.out.println("Vous etes banni !");
-		}
-		catch (UsernameOrPasswordNotFoundException e) {
+		} catch (UsernameOrPasswordNotFoundException e) {
 			System.out.println("Mot de passe ou username incorrect !");
+		} finally {
+			sc.close();
 		}
-		finally {
-		sc.close();
-		}
+	}
+
+	
+	public Utilisateur connexion (String username, String motDePasse)
+			throws AccountLockedException, UsernameOrPasswordNotFoundException {
+
+		Utilisateur monUtilisateur = daoUtilisateur.connexion(username, motDePasse);
+	
+		if (monUtilisateur == null) {
+			throw new UsernameOrPasswordNotFoundException();
 		}
 		
-		public Utilisateur connexion(String username, String motDePasse)
-				throws AccountLockedException, UsernameOrPasswordNotFoundException {
-
-			// JPQL -> entityManager
-			// Ajouter les paramètres (username, mdp)
-			// Récupérer l'Utilisateur -> UN SEUL UTILISATEUR
-			// SI YA PAS DUSER -> EXCEPTION DE TYPE NoResultException
-			// SI CA CATCH PAS, CEST QUE LUSER EXISTE
-			
-			Utilisateur monUtilisateur;
-			try {
-				TypedQuery<Utilisateur> myQuery = em.createQuery(
-						"select u from Utilisateur u where u.username = :username AND u.password = :password",
-						Utilisateur.class);
-				myQuery.setParameter("username", username);
-				myQuery.setParameter("password", motDePasse);
-
-				monUtilisateur = myQuery.getSingleResult();
-				if (monUtilisateur instanceof Joueur) {
-					if (((Joueur) monUtilisateur).isBanni()) {
-
-						throw new AccountLockedException();
-
-					}
-
-				}
-
-				return monUtilisateur;
-
-			} catch (NoResultException e) {
-
-				throw new UsernameOrPasswordNotFoundException();
-
+		if (monUtilisateur instanceof Joueur) {
+			if (((Joueur) monUtilisateur).isBanni()) {
+				throw new AccountLockedException();
 			}
-
 		}
-	
-	public static void RechercheCarte(){
+
+			return monUtilisateur;
+
+		
+
+	}
+
+	public  void RechercheCarte() {
 		sc = new Scanner(System.in);
 		System.out.print("Saisir votre mot : ");
-		String libelle= sc.nextLine();
+		String libelle = sc.nextLine();
 		daoCarte.findByLibelle(libelle);
 
 		sc.close();
-	
-		}
-		
+
+	}
 
 	/**
 	 * Se connecter avec un nom d'utilisateur et un mot de passe (à saisir)
 	 */
-	public static void connection() {
-		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
-		String username = sc.nextLine();
-
-		if (username.equals("")) {
-			inscription();
-			return;
-		}
-
-		System.out.print("Indiquer le mot de passe : ");
-		String password = sc.nextLine();
-
-		try {
-			utilisateur = daoUtilisateur.connexion(username, password);
-			System.out.println(" => Vous etes connecté ! ");
-			menu();
-
-		}
-
-		catch (UsernameOrPasswordNotFoundException e) {
-			System.out.println("MAUVAIS USERNAME OU PASSWORD !!");
-		}
-
-		catch (AccountLockedException e) {
-			System.out.println("COMPTE BLOQUE ... SORRY !");
-		}
-	}
+//	public void connection() {
+//		System.out.print("Indiquer le nom d'utilisateur (touche entrer pour s'inscrire) : ");
+//		String username = sc.nextLine();
+//
+//		if (username.equals("")) {
+//			inscription();
+//			return;
+//		}
+//
+//		System.out.print("Indiquer le mot de passe : ");
+//		String password = sc.nextLine();
+//
+//		try {
+//			utilisateur = daoUtilisateur.connexion(username, password);
+//			System.out.println(" => Vous etes connecté ! ");
+//			menu();
+//
+//		}
+//
+//		catch (UsernameOrPasswordNotFoundException e) {
+//			System.out.println("MAUVAIS USERNAME OU PASSWORD !!");
+//		}
+//
+//		catch (AccountLockedException e) {
+//			System.out.println("COMPTE BLOQUE ... SORRY !");
+//		}
+//	}
 
 	/**
 	 * S'inscrire (créer un nouveau compte utilisateur)
 	 */
-	public static void inscription() {
-		Joueur nouveauJoueur=new Joueur();
-		
+	public void inscription() {
+		Joueur nouveauJoueur = new Joueur();
+
 		sc = new Scanner(System.in);
 		System.out.print("Indiquer votre nom : ");
 		nouveauJoueur.setNom(sc.nextLine());
@@ -153,10 +143,10 @@ public class AppPrincipale {
 
 		System.out.print("Indiquer le nom d'utilisateur : ");
 		nouveauJoueur.setUsername(sc.nextLine());
-		
+
 		System.out.print("Indiquer le mot de passe : ");
 		nouveauJoueur.setPassword(sc.nextLine());
-		
+
 		System.out.print("Indiquer votre pseudo : ");
 		nouveauJoueur.setPseudo(sc.nextLine());
 
@@ -170,13 +160,13 @@ public class AppPrincipale {
 			System.out.println("Le nom d'utilisateur est déjà utilisé !");
 		}
 
-		ConnexionUtilisateur();
+		InterfaceConnexion();
 	}
-	
+
 	/**
 	 * Affiche le menu et démarre les sous-programmes
 	 */
-	public static void menu() {
+	public void menu() {
 		int menu = 0;
 
 		do {
@@ -211,7 +201,7 @@ public class AppPrincipale {
 			case 3:
 				System.out.println("=> Action 3 selectionnée <= ");
 
-				//editCarte();
+				// editCarte();
 				break;
 
 			case 4:
@@ -240,7 +230,7 @@ public class AppPrincipale {
 	/**
 	 * Affiche la liste des cartes
 	 */
-	public static void showCartes() {
+	public void showCartes() {
 		for (Carte c : daoCarte.findAll()) {
 			System.out.println(c.getId() + ". " + c.getLibelle());
 		}
@@ -249,7 +239,7 @@ public class AppPrincipale {
 	/**
 	 * Ajouter une carte
 	 */
-	public static void addCarte() {
+	public void addCarte() {
 		Carte myCarte = new Carte();
 
 		System.out.println("Saisir le libellé de la carte :");
@@ -276,7 +266,7 @@ public class AppPrincipale {
 	/**
 	 * Supprimer une carte
 	 */
-	public static void deleteCarte() {
+	public void deleteCarte() {
 		showCartes();
 
 		System.out.println("Choisir la carte à supprimer : ");
@@ -286,7 +276,7 @@ public class AppPrincipale {
 	/**
 	 * Affiche la liste des parties
 	 */
-	public static void showParties() {
+	public void showParties() {
 		for (Partie p : daoPartie.findAll()) {
 			System.out.println(p.getId());
 		}
