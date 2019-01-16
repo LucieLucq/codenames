@@ -7,6 +7,11 @@ header {
 	border-top: solid white 50px;
 }
 
+#div3{
+	text-align:center;
+	max-width: 100%;
+	height: auto;
+}
 footer {
 	position: absolute;
 	text-align: center;
@@ -40,15 +45,19 @@ section#lister h2 {
 	color: #1E90FF;
 	font-family: 'Montserrat', sans-serif;
 }
-th{
-  background-color: ThreeDDarkShadow;
-  color: white;
-   text-align: left;
-  padding: 8px;
 
+th {
+	background-color: ThreeDDarkShadow;
+	color: white;
+	text-align: left;
+	padding: 8px;
 }
-td{
 
-	 text-align: left;
-  padding: 8px;
+td {
+	text-align: left;
+	padding: 8px;
+}
+
+section#ajouter, #modifier, #supprimer, #lister {
+	display: none;
 }

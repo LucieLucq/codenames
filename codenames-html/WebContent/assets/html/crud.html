@@ -8,7 +8,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet">
+
 <link href="https://fonts.googleapis.com/css?family=Poiret+One"
 	rel="stylesheet">
 
@@ -19,19 +22,26 @@
 </head>
 
 <body>
-	<ul class="nav nav-tabs">
-		<li class="nav-item"><a class="nav-link" href="#lister">Lister
-				les cartes</a></li>
-		<li class="nav-item"><a class="nav-link" href="#ajouter">Ajouter
-				une carte</a></li>
-		<li class="nav-item"><a class="nav-link" href="#modifier">Mofidier
-				une carte</a></li>
-		<li class="nav-item"><a class="nav-link" href="#supprimer">Supprimer
-				une carte</a></li>
-		<li class="nav-item"><a class="nav-link" href="#déconnexion">Déconnexion</a>
-		</li>
-	</ul>
-
+	<nav>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link" href="#lister">Lister
+					les cartes</a></li>
+			<li class="nav-item"><a class="nav-link" href="#ajouter">Ajouter
+					une carte</a></li>
+			<li class="nav-item"><a class="nav-link" href="#modifier">Mofidier
+					une carte</a></li>
+			<li class="nav-item"><a class="nav-link" href="#supprimer">Supprimer
+					une carte</a></li>
+			<li class="nav-item"><a class="nav-link" href="#déconnexion">Déconnexion</a>
+			</li>
+		</ul>
+	</nav>
+<section id="Accueil">
+<header><h1>Bienvenue !</h1>
+<div id="div3" class=container>
+			<img src="images/codenames.PNG" alt="Codenames" width=400 height=250>
+		</div></header>
+</section>
 	<!-------------------------------------------------- LISTER -------------------------------------------------->
 	<section id="lister">
 		<header>
@@ -63,15 +73,16 @@
 		</header>
 
 		<div id="div1" class="container">
-			<form>
+			<form method="get">
 				<div class="form-group">
 					<label for="nouvelle_carte">Nouveau mot :</label> <input
 						type="text" class="form-control" name="libelle"
 						placeholder="Saisissez le mot à ajouter">
 				</div>
-		<!-- 		<button type="submit" class="btn btn-primary">Ajouter</button> -->
-					<input type="submit" value="Ajouter" onclick="ajouterCarte(); return false;" />
-					Voir "Lister les cartes"
+				<!-- 		<button type="submit" class="btn btn-primary">Ajouter</button> -->
+				<input type="submit" value="Ajouter"
+					onclick="ajouterCarte(); return false;" /> Voir "Lister les
+				cartes"
 			</form>
 		</div>
 	</section>
@@ -83,7 +94,7 @@
 		</header>
 
 		<div id="div3" class="container">
-			<form>
+			<form method="get">
 				<div class="form-group">
 					<label for="modif_carte1">Ancien mot :</label> <input type="text"
 						class="form-control" id="modif_carte1"
@@ -106,7 +117,7 @@
 		</header>
 
 		<div id="div2" class="container">
-			<form>
+			<form method="get">
 				<div class="form-group">
 					<label for="ancienne_carte">Carte à supprimer :</label> <input
 						type="text" class="form-control" id="ancienne_carte"
@@ -119,15 +130,18 @@
 
 	<footer class="container fixed-bottom">Copyright codenames.fr
 		&copy; 2019</footer>
-		
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="assets/js/codenames.js"></script>
-		<script src="assets/js/carte.js"></script>
+
+	<script src="assets/js/carte.js"></script>
+
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
 		crossorigin="anonymous"></script>
+
 	<script
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
