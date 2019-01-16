@@ -12,3 +12,7 @@ h1 {
 #div2{
 	text-align:center;
 }
+footer {
+	position: absolute;
+	text-align:center;
+}
