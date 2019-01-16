@@ -37,6 +37,18 @@ nav li a:hover::before {
 
 section#lister h2 {
 	border-top: solid white 50px;
-	color: #00008B;
-	font-family: 'Josefin Sans', sans-serif;
+	color: #1E90FF;
+	font-family: 'Montserrat', sans-serif;
+}
+th{
+  background-color: ThreeDDarkShadow;
+  color: white;
+   text-align: left;
+  padding: 8px;
+
+}
+td{
+
+	 text-align: left;
+  padding: 8px;
 }
