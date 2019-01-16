@@ -3,16 +3,17 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Bienvenue sur codenames !</title>
-<base href="/codenames-html/"/>
+<base href="/codenames-html/" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-	
-<link href="https://fonts.googleapis.com/css?family=Poiret+One" rel="stylesheet">
 
-	<link rel="stylesheet" type="text/css" href="assets/css/crud.css" />
-	
+<link href="https://fonts.googleapis.com/css?family=Poiret+One"
+	rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="assets/css/crud.css" />
+
 <meta name="description" content="" />
 <meta name="viewport" content="width=devide-width, initial-scale=1" />
 </head>
@@ -21,8 +22,8 @@
 	<ul class="nav nav-tabs">
 		<li class="nav-item"><a class="nav-link" href="#lister">Lister
 				les cartes</a></li>
-		<li class="nav-item"><a class="nav-link" href="#ajouter">Ajouter une
-				carte</a></li>
+		<li class="nav-item"><a class="nav-link" href="#ajouter">Ajouter
+				une carte</a></li>
 		<li class="nav-item"><a class="nav-link" href="#modifier">Mofidier
 				une carte</a></li>
 		<li class="nav-item"><a class="nav-link" href="#supprimer">Supprimer
@@ -31,12 +32,30 @@
 		</li>
 	</ul>
 
-<!-------------------------------------------------- LISTER -------------------------------------------------->
+	<!-------------------------------------------------- LISTER -------------------------------------------------->
 	<section id="lister">
 		<header>
-			<h1>Affichez la liste des cartes !</h1>
+			<h1>Trouvez ici la liste des cartes !</h1>
 		</header>
+		<div class="container-fluid">
+			<h2>Liste des cartes :</h2>
+			<table id="tableau_cartes" class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Carte</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">1</th>
+						<td>Chemin</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</section>
+	<!-------------------------------------------------- AJOUTER ------------------------------------------------->
 
 	<section id="ajouter">
 		<header>
@@ -47,15 +66,16 @@
 			<form>
 				<div class="form-group">
 					<label for="nouvelle_carte">Nouveau mot :</label> <input
-						type="text" class="form-control" id="nouvelle_carte"
+						type="text" class="form-control" name="libelle"
 						placeholder="Saisissez le mot à ajouter">
 				</div>
-				<button type="submit" class="btn btn-primary">Ajouter</button>
+		<!-- 		<button type="submit" class="btn btn-primary">Ajouter</button> -->
+					<input type="submit" value="Ajouter" onclick="ajouterCarte(); return false;" />
 			</form>
 		</div>
 	</section>
 
-<!-------------------------------------------------- MODIFIER -------------------------------------------------->
+	<!-------------------------------------------------- MODIFIER -------------------------------------------------->
 	<section id="modifier">
 		<header>
 			<h1>Modifiez une carte !</h1>
@@ -78,7 +98,7 @@
 		</div>
 	</section>
 
-<!-------------------------------------------------- SUPPRIMER -------------------------------------------------->
+	<!-------------------------------------------------- SUPPRIMER -------------------------------------------------->
 	<section id="supprimer">
 		<header>
 			<h1>Supprimez une carte !</h1>
@@ -95,10 +115,11 @@
 			</form>
 		</div>
 	</section>
-	
-		<footer class="container fixed-bottom">Copyright codenames.fr
+
+	<footer class="container fixed-bottom">Copyright codenames.fr
 		&copy; 2019</footer>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="assets/js/codenames.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -108,6 +129,6 @@
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
-	
+
 </body>
 </html>
