@@ -1,12 +1,42 @@
 header {
 	font-family: 'Poiret One', cursive;
 	font-size-base: 50px;
-    color: ThreeDDarkShadow;
-    font-family: 'Poiret One', cursive;
-    text-align:center;
-    border-top:solid white 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align: center;
+	border-top: solid white 50px;
 }
+
 footer {
 	position: absolute;
-	text-align:center;
+	text-align: center;
+}
+
+nav li a {
+	position: relative;
+	text-decoration: none;
+	color: inherit;
+}
+
+nav li a::before {
+	content: "";
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	width: 0;
+	height: 4px;
+	background: #00008B;
+	transition: all 0.25s ease-in-out;
+	width: 0;
+}
+
+nav li a:hover::before {
+	left: 0;
+	width: 100%;
+}
+
+section#lister h2 {
+	border-top: solid white 50px;
+	color: #00008B;
+	font-family: 'Josefin Sans', sans-serif;
 }
