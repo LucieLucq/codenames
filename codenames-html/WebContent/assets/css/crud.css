@@ -7,16 +7,16 @@ header {
 	border-top: solid white 50px;
 }
 
+
 #div3{
 	text-align:center;
-	max-width: 100%;
-	height: auto;
+	
 }
 footer {
 	position: absolute;
 	text-align: center;
+	
 }
-
 nav li a {
 	position: relative;
 	text-decoration: none;

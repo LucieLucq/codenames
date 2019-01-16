@@ -1,0 +1,16 @@
+@charset "ISO-8859-1";
+
+h1 {
+	font-size-base: 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
+#div2{
+	text-align:center;
+}
+footer {
+	position: absolute;
+	text-align:center;
+}
