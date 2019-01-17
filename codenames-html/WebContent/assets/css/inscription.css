@@ -14,3 +14,24 @@ footer {
 	position: absolute;
 	text-align:center;
 }
+
+input.form-control:valid {
+  border:1px solid #0a0;
+
+}
+input.form-control:invalid {
+  border:1px solid #a00;
+
+}
+ input.form-control:valid + span:before  {
+  content: "\f00c";
+ 
+  color:#0a0;
+  font-size: 1.5em;
+}	
+input.form-control:invalid + span:before  {
+  content: "\f00d";
+
+  color:#a00;
+  font-size: 1.5em;
+} 

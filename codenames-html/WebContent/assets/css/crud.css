@@ -7,11 +7,18 @@ header {
 	border-top: solid white 50px;
 }
 
-
-#div3{
+h1 {
+	font-size-base: 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
+#div4, #div5{
 	text-align:center;
 	
 }
+
 footer {
 	position: absolute;
 	text-align: center;
@@ -45,7 +52,22 @@ section#lister h2 {
 	color: #1E90FF;
 	font-family: 'Montserrat', sans-serif;
 }
-
+section#Accueil h1{
+	font-size : 70px;
+	
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
+section#deconnexion h1{
+	font-size : 50px;
+	border-bottom:solid white 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
 th {
 	background-color: ThreeDDarkShadow;
 	color: white;
@@ -58,6 +80,6 @@ td {
 	padding: 8px;
 }
 
-section#ajouter, #modifier, #supprimer, #lister {
+section#ajouter, #modifier, #supprimer, #lister, #deconnexion{
 	display: none;
 }

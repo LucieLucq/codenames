@@ -77,10 +77,11 @@
 					<span class="input-group-text" id="inputGroup-sizing-sm">Password
 					</span>
 				</div>
-				<input type="text" class="form-control" name="password"
+				<input type="text" class="form-control" name="password" required pattern="[0-9a-zA-Z-\.]{5,12}"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-sm"
-					placeholder="Saisissez votre password" />
+					placeholder="Saisissez votre password de 5 à 12 caractères" />
+					 <span class="resultat"></span>
 			</div>
 
 			<div>
@@ -90,10 +91,10 @@
 		</form>
 	</div>
 	<div id="div2">
-		<img src="images/codenames-footer.PNG" alt="footer" width=800 height=300 >
+		<img src="images/codenames-footer.PNG" alt="footer" width=800 height=250 >
 
 	</div>
-
+	<script src="assets/js/controleMDP.js"></script>
 	<footer class="container fixed-bottom">Copyright codenames.fr
 		&copy; 2019</footer>
 	<script
