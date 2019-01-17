@@ -1,0 +1,43 @@
+#conversation {
+    list-style: none outside none;
+    box-shadow: 2px 2px 3px #555555;
+    height: 300px;
+    overflow: auto;
+    width: 440px;
+    margin-bottom: 10px;
+}
+
+#send_text {
+    width: 390px;
+}
+
+#send_button {
+    width: 48px;
+}
+footer {
+	position: absolute;
+	text-align: center;
+	
+}
+nav li a {
+	position: relative;
+	text-decoration: none;
+	color: inherit;
+}
+
+nav li a::before {
+	content: "";
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	width: 0;
+	height: 4px;
+	background: #00008B;
+	transition: all 0.25s ease-in-out;
+	width: 0;
+}
+
+nav li a:hover::before {
+	left: 0;
+	width: 100%;
+}

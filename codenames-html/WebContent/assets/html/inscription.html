@@ -33,10 +33,10 @@
 					<span class="input-group-text" id="inputGroup-sizing-sm">Nom
 					</span>
 				</div>
-				<input type="text" class="form-control" name="nom"
+				<input type="text" class="form-control" name="nom" required="required" pattern="[A-Z]{1}[a-z-]{2,18}"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-sm"
-					placeholder="Saisissez votre nom" />
+					required placeholder="De 3 à 20 caractères précédés d'une lettre majuscule" />
 			</div>
 			
 			<div class="input-group input-group-sm mb-3">
@@ -44,10 +44,10 @@
 					<span class="input-group-text" id="inputGroup-sizing-sm">Prénom
 					</span>
 				</div>
-				<input type="text" class="form-control" name="prenom"
+				<input type="text" class="form-control" name="prenom" required="required" pattern="[A-Z]{1}[a-z-]{2,18}"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-sm"
-					placeholder="Saisissez votre prénom" />
+					required placeholder="De 3 à 20 caractères précédés d'une lettre majuscule" />
 				</div>
 				
 				<div class="input-group input-group-sm mb-3">
@@ -55,10 +55,10 @@
 					<span class="input-group-text" id="inputGroup-sizing-sm">Pseudo
 					</span>
 				</div>
-				<input type="text" class="form-control" name="pseudo"
+				<input type="text" class="form-control" name="pseudo" required="required" pattern="[A-Z]{1}[0-9]{2,4}[a-z-]{2,10}" 
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-sm"
-					placeholder="Saisissez votre pseudo" />
+					required placeholder="De 5 à 15 caractères précédés d'une lettre majuscule et de 2 à 4 chiffres" />
 				</div>
 				
 			<div class="input-group input-group-sm mb-3">
@@ -66,10 +66,10 @@
 					<span class="input-group-text" id="inputGroup-sizing-sm">Username
 					</span>
 				</div>
-				<input type="text" class="form-control" name="username"
+				<input type="text" class="form-control" name="username" required="required" pattern="[A-Z]{1}[a-z-]{4,14}"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-sm"
-					placeholder="Saisissez votre username" />
+					required placeholder="De 5 à 15 caractères précédés d'une lettre majuscule"/>
 			</div>
 			
 			<div class="input-group input-group-sm mb-3">
@@ -77,11 +77,11 @@
 					<span class="input-group-text" id="inputGroup-sizing-sm">Password
 					</span>
 				</div>
-				<input type="text" class="form-control" name="password" required pattern="[0-9a-zA-Z-\.]{5,12}"
+				<input type="text" class="form-control" name="password" required="required" pattern="[A-Z]{1}[0-9]{2,4}[a-z-]{5,15}"
 					aria-label="Sizing example input"
 					aria-describedby="inputGroup-sizing-sm"
-					placeholder="Saisissez votre password de 5 à 12 caractères" />
-					 <span class="resultat"></span>
+					required placeholder="De 8 à 20 caractères précédés d'une lettre majuscule et de 2 à 4 chiffres" />
+					
 			</div>
 
 			<div>
@@ -94,9 +94,9 @@
 		<img src="images/codenames-footer.PNG" alt="footer" width=800 height=250 >
 
 	</div>
-	<script src="assets/js/controleMDP.js"></script>
 	<footer class="container fixed-bottom">Copyright codenames.fr
 		&copy; 2019</footer>
+		
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
