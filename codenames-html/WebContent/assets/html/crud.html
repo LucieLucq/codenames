@@ -37,20 +37,22 @@
 			</li>
 		</ul>
 	</nav>
-	
-<section id="Accueil">
-<header><h1>Bienvenue !</h1>
-<div id="div4" class=container>
-			<img src="images/codenames.PNG" alt="Codenames" width=400 height=250>
-		</div></header>
-</section>
+
+	<section id="Accueil">
+		<header>
+			<h1>Bienvenue !</h1>
+			<div id="div4" class=container>
+				<img src="images/codenames.PNG" alt="Codenames" width=400 height=250>
+			</div>
+		</header>
+	</section>
 	<!-------------------------------------------------- LISTER -------------------------------------------------->
 	<section id="lister">
 		<header>
-			<h1>Liste des cartes </h1>
+			<h1>Liste des cartes</h1>
 		</header>
 		<div class="container-fluid">
-		
+
 			<table id="tableau_cartes" class="table table-striped">
 				<thead>
 					<tr>
@@ -71,7 +73,7 @@
 
 	<section id="ajouter">
 		<header>
-			<h1>Ajoutez une nouvelle carte </h1>
+			<h1>Ajoutez une nouvelle carte</h1>
 		</header>
 
 		<div id="div1" class="container">
@@ -82,9 +84,10 @@
 						placeholder="Saisissez le mot à ajouter">
 				</div>
 				<!-- 		<button type="submit" class="btn btn-primary">Ajouter</button> -->
-				<input type="submit" value="Ajouter"
-					onclick="ajouterCarte(); return false;" /> Voir "Lister les
-				cartes"
+				<input type="submit" class="btn btn-primary value="
+					Ajouter"
+					onclick="ajouterCarte(); return false;" /> Voir
+				"Lister les cartes"
 			</form>
 		</div>
 	</section>
@@ -92,7 +95,7 @@
 	<!-------------------------------------------------- MODIFIER -------------------------------------------------->
 	<section id="modifier">
 		<header>
-			<h1>Modifiez une carte </h1>
+			<h1>Modifiez une carte</h1>
 		</header>
 
 		<div id="div3" class="container">
@@ -107,7 +110,10 @@
 						class="form-control" id="modif_carte2"
 						placeholder="Saisissez le nouveau mot">
 				</div>
-				<button type="submit" class="btn btn-primary">Modifier</button>
+				<!-- <button type="submit" class="btn btn-primary">Modifier</button> -->
+				<input type="submit" class="btn btn-primary value="
+					Modifier"
+					onclick="modifierMots(); return false;" />
 			</form>
 		</div>
 	</section>
@@ -115,42 +121,45 @@
 	<!-------------------------------------------------- SUPPRIMER -------------------------------------------------->
 	<section id="supprimer">
 		<header>
-			<h1>Supprimez une carte </h1>
+			<h1>Supprimez une carte</h1>
 		</header>
 
 		<div id="div2" class="container">
 			<form method="get">
 				<div class="form-group">
 					<label for="ancienne_carte">Carte à supprimer :</label> <input
-						type="text" class="form-control"  name="ancienne_carte" 
+						type="text" class="form-control" name="ancienne_carte"
 						placeholder="Saisissez le mot à supprimer">
 				</div>
-				<button type="submit" class="btn btn-primary">Supprimer</button>
+				<!-- 	<button type="submit" class="btn btn-primary">Supprimer</button> -->
+				<input type="submit" class="btn btn-primary value="
+					Supprimer"
+					onclick="supprimerMots(); return false;" />
 			</form>
 		</div>
 	</section>
 
-<!-------------------------------------------------- DECONNEXION -------------------------------------------------->
+	<!-------------------------------------------------- DECONNEXION -------------------------------------------------->
 	<section id="deconnexion">
 		<header>
-			<h1> A très bientôt sur codenames.fr </h1>
+			<h1>A très bientôt sur codenames.fr</h1>
 		</header>
 		<div id="div5">
-		<img src="images/choque.png" alt="choque" >
+			<img src="images/choque.png" alt="choque">
 
 		</div>
-	</section>	
+	</section>
 
-	<footer class="container fixed-bottom">Copyright codenames.fr 
+	<footer class="container fixed-bottom">Copyright codenames.fr
 		&copy; 2019</footer>
-		
-		
+
+
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="assets/js/codenames.js"></script>
 
-	<script src="assets/js/carte.js"></script>
-
+	<script src="assets/js/ajouter-lister.js"></script>
+	<script src="assets/js/supprimer.js"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
 		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
