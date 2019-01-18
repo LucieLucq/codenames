@@ -5,48 +5,101 @@ td {
 	background-color: #DCD3D3;
 	text-align: center;
 	box-shadow: 8px 8px 12px #aaa;
-	
+}
+
+.grille {
+	width:1050px;
+	background-color: #DCDCDC;
+	margin: auto;
+	border-radius: 10px;
+	display: grid;
 }
 
 
-.rectangle {
-	width: 120px;
-	height: 30px;
+.rectangle1 {
+	position: relative;
+	width: 180px;
+	height: 100px;
 	background: white;
 	margin: 10px auto;
+	background-color: #FFDEAD;
+	border-radius: 10px;
+	image: url('carte_id.jpg');
+	float: left;
+}
+
+.rond {
+	position: absolute;
+	background-color: none;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+	border: 5px solid #e5c492;
+	top: 7px;
+	left: 83px;
+	
+}
+
+.photo-distinction {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.rectangle2 {
+	position: absolute;
+	background-color: #ffeed6;
+	left: 10px;
+	bottom: 20px;
+	width: 160px;
+	height: 25px;
+	text-align: center;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+	color: #2d2824;
+
+	
+	
+}
+.bordure {
+	position: absolute;
+	background-color: none;
+	left: 5px;
+	bottom: 5px;
+	width: 170px;
+	height: 90px;
+	border:2px solid #e5c492;
+	border-radius: 10px;
+	
+}
+
+div#trait {
+	position: absolute;
+	top: 47px;
+	left: 10px;
+	bottom: 25px;
+	height: 2px;
+	width: 122px;
+	background-color: #e5c492;
 }
 
 header#bandeau {
 	height: 90px;
-    margin: 0;
-    text-align: center;
-    border-bottom: solid white 35px;
-    font-family: 'Poiret One', cursive;
+	margin: 0;
+	text-align: center;
+	border-bottom: solid white 35px;
+	font-family: 'Poiret One', cursive;
 }
 
 table {
-	 border-collapse: separate;
-	  border-spacing: 10px 10px;
-	  margin-left: 250px;
-	  animation-name: zoomIn;
-	  animation-duration: 1s;
-	  
-	 
+	border-collapse: separate;
+	border-spacing: 10px 10px;
+	margin-left: 250px;
 }
 
 footer {
-	position : absolute;
+	position: absolute;
 	text-align: center;
-}
-
-@keyframes zoomIn {
-  from {
-    opacity: 0;
-    -webkit-transform: scale3d(0.3, 0.3, 0.3);
-    transform: scale3d(0.3, 0.3, 0.3);
-  }
-
-  50% {
-    opacity: 1;
-  }
+	
 }
