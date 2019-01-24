@@ -28,7 +28,7 @@ public class CarteController {
 	}
 
 	// AJOUTER CARTES
-	@GetMapping("/ajouter-carte") // accès au formulaire
+	@GetMapping("/ajouter-carte") // accï¿½s au formulaire
 	public String ajouterCarte() {
 		return "ajout-cartes";
 	}

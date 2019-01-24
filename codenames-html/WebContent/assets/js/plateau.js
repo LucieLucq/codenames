@@ -40,3 +40,20 @@ function shuffle(array) {
 
     return array;
 }
+
+//Cacher/afficher des images
+for (let i = 1; i<=25;i++) {
+	
+$('div#carte' +i).bind('click', function() {
+
+	
+	//this -> lien cliqué
+	let mySelecteurACacher = $(this).attr('.rectangle1');
+ 
+	$(mySelecteurACacher).hide();
+	$('img#photo_carte').show(); 
+	
+	return false;
+	
+});
+}

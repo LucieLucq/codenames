@@ -20,7 +20,7 @@ public class Carte {
 	private int id;
 	
 	@Column(name="CAR_LIBELLE")
-	@NotEmpty(message="Le libelle doit être saisi")
+	@NotEmpty(message=" Attention : un mot doit etre saisi ! ")
 	@NotNull
 	private String libelle;
 
