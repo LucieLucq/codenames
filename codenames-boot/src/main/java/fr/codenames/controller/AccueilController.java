@@ -11,7 +11,7 @@ public class AccueilController {
 
 	@GetMapping("/connexion")
 	public String accueil(@RequestParam(required=false) String username, Model model ) {
-		model.addAttribute("utilisateurs", username);
+		model.addAttribute("Utilisateur", username);
 		return "connexion";
 	}
 	
