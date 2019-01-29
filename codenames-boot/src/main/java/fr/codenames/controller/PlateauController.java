@@ -30,7 +30,7 @@ public class PlateauController {
 		@PostMapping("/plateau")
 		@ResponseBody
 		public String plateau(@RequestParam String libelle) {
-			System.out.println("Le mot s�lectionn� est > " + libelle);
+			System.out.println("Le mot sélectionné est : " + libelle);
 			return "libelle";
 		}
 }
