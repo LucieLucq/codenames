@@ -31,6 +31,7 @@
 	</nav><body>
 	<!-------------------------------------------------- MODIFIER -------------------------------------------------->
 	<section id="modifier">
+		<small sec:authorize="hasRole('ROLE_ADMIN')">
 		<header>
 			<h1>Modifiez une carte</h1>
 		</header>
@@ -51,6 +52,7 @@
 
 			</form>
 		</div>
+		</small>
 	</section>
 
 

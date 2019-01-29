@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.codenames.dao.IDAOCarte;
 import fr.codenames.model.Carte;
+import fr.codenames.security.annotation.IsAdmin;
 
 
 @Controller
@@ -28,6 +29,7 @@ public class CarteController {
 		}
 	
 	// AJOUTER
+	@IsAdmin
 	@PostMapping("/lister-carte")
 	public String ajouterCarte(@Valid @ModelAttribute Carte carte, BindingResult result) {
 		if(result.hasErrors()) {
@@ -39,6 +41,7 @@ public class CarteController {
 	}
 	
 	// SUPPRIMER
+	@IsAdmin
 	@GetMapping("/supprimerCarte")
 	public String supprimerCarte(@RequestParam int id) {
 		daoCarte.deleteById(id);
@@ -46,12 +49,14 @@ public class CarteController {
 	}
 	
 	//EDITER
+	@IsAdmin
 	@GetMapping("/editerCarte")
 	public String editerCarte(@RequestParam int id, Model model) {
 		model.addAttribute("carte",daoCarte.findById(id).get() );
 		return "editer-cartes";
 	}
 
+	@IsAdmin
 	@PostMapping("/editerCarte")
 	public String editerCarte2(@RequestParam  int id,@Valid @ModelAttribute Carte carte, BindingResult result) {
 		if(result.hasErrors()) {

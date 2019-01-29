@@ -21,7 +21,7 @@
 		<ul class="nav nav-tabs">
 			<li class="nav-item"><a class="nav-link" href="accueil">Accueil</a></li>
 			<li class="nav-item"><a class="nav-link" href="#lister">Lister les cartes</a></li>
-			<li class="nav-item"><a class="nav-link" href="#ajouter">Ajouter une carte</a></li>
+			<li class="nav-item"><small sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link" href="#ajouter" >Ajouter une carte</a></small></li>
 			<li class="nav-item"><a class="nav-link" href="#deconnexion">Deconnexion</a></li>
 		</ul>
 	</nav>
@@ -48,7 +48,7 @@
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Carte</th>
-						<th scope="col">Actions</th>
+						<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,6 +65,7 @@
 
 	<!-------------------------------------------------- AJOUTER ------------------------------------------------->
 	<section id="ajouter">
+	<small sec:authorize="hasRole('ROLE_ADMIN')">
 		<header>
 			<h1>Ajoutez une nouvelle carte</h1>
 		</header>
@@ -85,6 +86,7 @@
 				<input type="submit" class="btn btn-primary" value="Ajouter" />
 			</form>
 		</div>
+		</small>
 	</section>
 
 
