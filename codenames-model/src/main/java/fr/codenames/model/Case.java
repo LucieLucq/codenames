@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="case")
+@Table(name="[case]")
 public class Case {
 	
 	@Id
