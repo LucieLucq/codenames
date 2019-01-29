@@ -1,0 +1,79 @@
+h1 {
+	font-size-base: 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align: center;
+	border-top: solid white 50px;
+}
+
+h2 {
+	font-size: 40px;
+	border-top : solid white 30px;
+	color: red;
+	font-family: Verdana, Geneva, sans-serif;
+	text-align: center;
+	text-decoration: underline dotted;
+}
+
+h3 {
+	font-size: 20px;
+	border-top: solid white 30px;
+	color: gray;
+	font-family: 'Montserrat', sans-serif;
+	text-align: center;
+	
+}
+
+h4 {
+	font-size: 20px;
+	border-top: solid white 30px;
+	color: black;
+	font-family: 'Montserrat', sans-serif;
+	padding-left: 50px;
+	padding-right: 50px;
+}
+
+div {
+	font-family: 'Arial';
+	color: black;
+	text-align: justify;
+	margin: 2px 2px 1em 0;
+	padding-left: 50px;
+	padding-right: 50px;
+	border-top: solid white 10px;
+}
+ul,ol{
+	padding-left: 100px;
+	padding-right: 100px;
+}
+#div1,#div2, #div3, #div5, #div6, #div7, #div8, #div9 {
+	text-align: center;
+}
+
+nav li a {
+	position: relative;
+	text-decoration: none;
+	color: inherit;
+}
+
+nav li a::before {
+	content: "";
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	width: 0;
+	height: 4px;
+	background: #00008B;
+	transition: all 0.25s ease-in-out;
+	width: 0;
+}
+
+nav li a:hover::before {
+	left: 0;
+	width: 100%;
+}
+footer {
+	position: absolute;
+	text-align: center;
+	
+}

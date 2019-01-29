@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Bienvenue sur codenames !</title>
+<base href="/codenames-web/" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css?family=Poiret+One"
+	rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="assets/css/crud.css" />
+
+<meta name="description" content="" />
+<meta name="viewport" content="width=devide-width, initial-scale=1" />
+</head>
+<body>
+	<nav>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link" href="accueil">Accueil</a></li>
+			<li class="nav-item"><a class="nav-link" href="#Accueil">grth</a></li>
+			<li class="nav-item"><a class="nav-link" href="#lister">Lister
+					les cartes</a></li>
+			<li class="nav-item"><a class="nav-link" href="#ajouter">Ajouter
+					une carte</a></li>
+			<li class="nav-item"><a class="nav-link" href="#deconnexion">Deconnexion</a>
+			</li>
+		</ul>
+	</nav>
+
+	<section id="Accueil">
+		<header>
+			<h1>Bienvenue !</h1>
+			<div id="div4" class=container>
+				<img src="images/codenames.PNG" alt="Codenames" width=400 height=250>
+			</div>
+		</header>
+	</section>
+
+	<!-------------------------------------------------- LISTER -------------------------------------------------->
+
+	<section id="lister">
+		<header>
+			<h1>Liste des cartes</h1>
+		</header>
+		<div class="container-fluid">
+
+			<table id="tableau_cartes" class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Carte</th>
+						<th scope="col">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="carte:${cartes}">
+						<td scope="row">[[${carte.id }]]</td>
+						<td>[[${carte.libelle }]]</td>
+						<td><a th:href="@{supprimerCarte(id=${carte.id })}">Supprimer
+						</a> <a th:href="@{editerCarte(id=${carte.id })}">Editer </a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+
+	<!-------------------------------------------------- AJOUTER ------------------------------------------------->
+	<section id="ajouter">
+		<header>
+			<h1>Ajoutez une nouvelle carte</h1>
+		</header>
+
+		<div th:if="${carte != null}">
+			<div th:errors="${carte.libelle}"></div>
+		</div>
+
+		<div id="div1" class="container">
+			<form method="POST">
+				<div class="form-group">
+					<label for="nouvelle_carte">Nouveau mot :</label> <input
+						type="text" class="form-control" name="libelle"
+						th:value="${carte?.libelle}"
+						placeholder="Saisissez le mot a ajouter">
+				</div>
+
+				<input type="submit" class="btn btn-primary" value="Ajouter" />
+			</form>
+		</div>
+	</section>
+
+
+
+
+
+
+
+
+	<footer class="container fixed-bottom">Copyright codenames.fr
+		&copy; 2019</footer>
+
+
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="assets/js/codenames.js"></script>
+
+	<script src="assets/js/ajouter-lister.js"></script>
+	<script src="assets/js/supprimer.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+</body>
+</html>

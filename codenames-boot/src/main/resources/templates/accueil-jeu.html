@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Bienvenue sur codenames !</title>
+
+<base href="/codenames-web/" />
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Poiret+One"
+	rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="assets/css/accueil-jeu.css" />
+
+<meta name="description" content="" />
+
+</head>
+<nav>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link" href="accueil">Accueil</a></li>
+			<li class="nav-item"><a class="nav-link" href="lister-carte">Gestion carte</a></li>
+			<li class="nav-item"><a class="nav-link" href="plateau.html">Jouer</a></li>
+			<li class="nav-item"><a class="nav-link" href="#deconnexion">Deconnexion</a>
+			</li>
+		</ul>
+	</nav>
+
+<body>
+	<h1>Regles du jeu : Codenames</h1>
+	<div id=div1>
+		<img src="images/presentation.jpg" alt="Presentation" width=500
+			height=350>
+
+	</div>
+	<div>CodeNames est un jeu d'association d'idées pour 2 à 8
+		joueurs qui se joue par équipe (rouge et bleue). Vous avez apprécié
+		Dixit ? Vous adorerez CodeNames ! But : Dans chaque équipe, un espion
+		(ou conteur) doit faire deviner à son équipe une liste de mots
+		(appelés Nom de Code) inscrit sur une « carte clé » commune aux deux
+		espions. –> L'équipe qui trouve tous les noms de Code inscrits sur la
+		carte Clé gagne la partie (l'équipe qui commence doit faire deviner 9
+		mots et l'autre équipe 8).</div>
+
+	<h2>Matériel</h2>
+
+	<h3>Les cartes Nom de code :</h3>
+	<div id=div2>
+		<img src="images/carte_description.jpg" alt="carte_description"
+			width=300 height=150>
+
+	</div>
+
+	<div>Ce sont les mots (un mot par carte) déposés sur la table en
+		grille de 25 cartes (et visibles par tous) que les espions doivent
+		faire deviner à leur équipe respective.</div>
+
+	<h3>La carte clé :</h3>
+	<div id=div9>
+		<img src="images/carte_cle.jpg" alt="carte_cle" width=300 height=150>
+
+	</div>
+	<div>
+		Donnée aux espions, est une carte composée d'une grille de 5×5 carrés
+		rouges, bleus, noirs et beiges.
+		<p>La carte Clé correspond à la grille des 25 cartes déposée sur
+			la table.</p>
+		Elle est composée de plusieurs carrés colorés :
+	</div>
+	<ul>
+		<li>Les carrés rouges correspondent aux mots que l'équipe rouge
+			doit trouver.</li>
+		<li>Les carrés bleus correspondent aux mots que l'équipe bleue
+			doit trouver.</li>
+		<li>Les carrés beiges correspondent aux cartes neutres qui
+			n'appartiennent à aucune équipe.</li>
+		<li>Le carré noir correspond à l'Assassin. Si votre équipe
+			retourne la carte, vous perdez.</li>
+		<li>Les 4 lumières LED sur les bords de la « Carte Clé »
+			indiquent la couleur de l'équipe qui commence la partie.</li>
+	</ul>
+	<h3>Tuiles identité:</h3>
+	<div id=div3>
+		<img src="images/tuiles_identite.jpg" alt="tuiles" width=400
+			height=150>
+
+	</div>
+	<div>Elles représentent respectivement l'Equipe Rouge, Bleue,
+		Neutre et l'Assassin. Dès qu'une équipe désigne un nom de code parmi
+		les cartes déposées sur la table, la tuile Identité correspondante est
+		placée sur cette carte pour indiquer à qui appartient le Nom de Code
+		désigné.</div>
+	
+	<h2>Déroulement de la partie</h2>
+	<h4>Objectif :</h4>
+	<div>
+		<ul>
+			<li>L'équipe qui commence doit faire deviner 9 mots (d'où la
+				tuile extra).</li>
+			<li>L'équipe numéro 2 ne devra deviner que 8 mots.</li>
+	</div>
+	<h3>Déroulement d'un tour</h3>
+	<div>Un tour se compose de deux phases : Une phase 1 jouée par
+		l'espion et une phase 2 jouée par les joueurs en face.</div>
+	<ul>
+		<li><b>Phase 1 (Espions) : Donner l'indice :</b>
+			<ul>
+				<li>En tant qu'espion vous devrez faire deviner tous les mots
+					associés à la couleur de votre équipe.</li>
+				<li>Pour cela, vous n'avez le droit qu'à « 1 mot + 1 chiffre ».
+					Le chiffre indique à votre équipe le nombre de cartes en rapport
+					avec l'indice.</li>
+				<li>Ex : pour faire deviner Chausson et Tennis, vous pouvez
+					donner l'indice « Basket 2 »)
+			</ul></li>
+		<li><b>Phase 2 (joueurs non espions) : Donner un ou plusieurs
+				Noms de Code</b>
+			<ul>
+				<li>Ne pas regarder les Espions qui doivent rester neutres et
+					ne pas donner d'indices avec leur visages.</li>
+				<li>Mettez-vous d'accord sur un nom de code, puis touchez la
+					carte sur la table.</li>
+				<li>Si la carte touchée est un Nom de Code appartenant à votre
+					équipe, votre espion recouvre le Nom de Code avec la tuile identité
+					de votre couleur et votre tour continue et vous pouvez tenter de
+					deviner un autre mot, toujours en rapport avec l'indice. Vous ne
+					désignez qu'une carte à la fois.</li>
+				<li>Si la carte est un Nom de Code appartenant à l'équipe
+					adverse, votre Espion recouvre le Nom de Code avec une tuile
+					Identité de la couleur adverse et votre tour s'arrête immédiatement</li>
+			</ul></li>
+	</ul>
+	<div id=div5>
+		<img src="images/assassin.PNG" alt="assassin" width=400 height=250>
+		<p>
+			<i><small>La fameuse tuile Identité : Assassin</small></i>
+		</p>
+
+	</div>
+	<div>[!] Avant de donner un indice, assurez-vous qu'il ne peut
+		pas être associé à l'Assassin (vous perdriez immédiatement la partie
+		sinon).</div>
+	<div>[!] Vous devez au moins donner un nom de Code par Tour. Si
+		vous devinez un mot, vous pouvez continuer à jouer ou donner la main.
+		Toute erreur met fin au Tour.</div>
+	<h2>Fin de la partie</h2>
+	<div id=div6>
+		<img src="images/game-over.png" alt="game-over" width=120 height=100>
+		<p>
+			<i><small>La partie prend fin dès qu'une équipe :</small></i>
+		</p>
+
+	</div>
+	<ul>
+		<li>A trouvé tous ses Noms de Code (vainqueur)</li>
+		<li>Ou est tombée sur l'Assassin (perdante)</li>
+	</ul>
+	<h2>Mise en place pour la partie suivante :</h2>
+	<ul>
+		<li>Retirez les tuiles Identité</li>
+		<li>Retournez les 25 cartes Noms de Code</li>
+		<li>Piochez une nouvelle Carte Clé (n'hésitez pas à changer
+			d'Espion)</li>
+		<li>Ou est tombée sur l'Assassin (perdante)</li>
+	</ul>
+	<h4>Pénalités en cas d'indice invalide :</h4>
+	<div id=div7>
+		<img src="images/penalite.jpg" alt="penalite" width=200 height=150>
+
+	</div>
+	<ul>
+		<li>Si un Espion donne un indice invalide, l'autre Espion peut
+			recouvrir sur l'un des cartes, l'un de ses Nom de Code avec sa tuile
+			Identité.</li>
+	</ul>
+	<h4>Un indice est invalide si vous utilisez :</h4>
+	<ul>
+		<li>Une partie du Nom de Code à deviner (Prince n'est pas
+			l'indice de princesse)</li>
+		<li>Un mot de la même famille que le Nom de Code (Décrocher n'est
+			pas un indice pour crochet)</li>
+		<li>Un mot trop proche phonétiquement (place n'est pas un indice
+			pour Glace)</li>
+		<li>Un homonyme (laid n'est pas un indice pour lait)</li>
+		<li>Un mot qui se rapporte à l'emplacement du Nom de Code sur la
+			table (gauche n'est pas un indice pour faire deviner un mot se
+			trouvant à gauche de la grille)</li>
+		<li>Un chiffre qui se rapporte au nombre de lettres qui composent
+			le Nom de Code</li>
+
+		<h2>Retrouvez les regles de codenames en video :</h2>
+		<div id=div8>
+			<iframe width="420" height="315" src="https://youtu.be/aVt37w8m2SM">
+			</iframe>
+		</div>
+
+		<footer class="container fixed-bottom">Copyright codenames.fr
+			&copy; 2019</footer>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+			integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+			crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+section#Accueil h1{
+	font-size : 70px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+} 
+header {
+	font-family: 'Poiret One', cursive;
+	font-size-base: 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align: center;
+	border-top: solid white 50px;
+}
+input::placeholder{
+	font-size:16px;
+	 font-style:italic;
+
+}
+
+h1 {
+	font-size-base: 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
+#div4, #div5{
+	text-align:center;
+	
+}
+div#errors{
+	font-size: 30px;
+	color: red;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
+footer {
+	position: absolute;
+	text-align: center;
+	
+}
+nav li a {
+	position: relative;
+	text-decoration: none;
+	color: inherit;
+}
+
+nav li a::before {
+	content: "";
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	width: 0;
+	height: 4px;
+	background: #00008B;
+	transition: all 0.25s ease-in-out;
+	width: 0;
+}
+
+nav li a:hover::before {
+	left: 0;
+	width: 100%;
+}
+
+section#lister h1 {
+	border-top: solid white 50px;
+	color: #1E90FF;
+	font-family: 'Montserrat', sans-serif;
+	
+}
+
+section#deconnexion h1{
+	font-size : 50px;
+	border-bottom:solid white 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
+th {
+	background-color: ThreeDDarkShadow;
+	color: white;
+	text-align: left;
+	padding: 8px;
+}
+
+td {
+	text-align: left;
+	padding: 8px;
+}
+
+section#ajouter,#lister, #deconnexion{
+	display: none;
+}

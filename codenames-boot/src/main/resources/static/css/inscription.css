@@ -1,0 +1,44 @@
+@charset "ISO-8859-1";
+
+h1 {
+	font-size-base: 50px;
+	color: ThreeDDarkShadow;
+	font-family: 'Poiret One', cursive;
+	text-align:center;
+	border-top:solid white 100px;
+}
+#div2{
+	text-align:center;
+}
+footer {
+	position: absolute;
+	text-align:center;
+}
+input::placeholder{
+	font-size:16px;
+	 font-style:italic;
+}
+input.form-control {
+  outline:0;
+  font-size:10px;
+  width:200px;
+}	
+
+input.form-control:valid {
+  border:2px solid #0a0;
+
+}
+input.form-control:invalid {
+  border:2px solid #a00;
+
+}
+ input.form-control:valid  {
+  content: "\f00c";
+  color:#0a0;
+  font-size: 1.1em;
+}	
+input.form-control:invalid  {
+  content: "\f00d";
+  color:#a00;
+  font-size: 1.1em;
+} 
