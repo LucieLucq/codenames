@@ -1,5 +1,5 @@
 //Cacher/afficher des sections
-$('nav a').bind('click', function() {
+$('nav a[href^="#"]').bind('click', function() {
 	
 	//this -> lien cliqué
 	let mySelecteurAAfficher = $(this).attr('href');
