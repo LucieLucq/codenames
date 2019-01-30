@@ -2,21 +2,32 @@
 
 h1 {
 	font-size-base: 50px;
-	color: ThreeDDarkShadow;
+	color: white;
 	font-family: 'Poiret One', cursive;
 	text-align:center;
-	border-top:solid white 100px;
+	border-top:solid #9bA5b5 100px;
+	border-bottom : solid #9bA5b5 30px;
 }
+
+.photo-distinction {
+	border-radius : 10px;
+	border-color: white;
+	border-width: 3px;
+	border-style: solid  ;
+	margin-top : 30px;
+}
+
 #div2{
 	text-align:center;
 }
 footer {
 	position: absolute;
 	text-align:center;
+	color: white;
 }
 input::placeholder{
 	font-size:16px;
-	 font-style:italic;
+	font-style:italic;
 }
 input.form-control {
   outline:0;
@@ -42,3 +53,7 @@ input.form-control:invalid  {
   color:#a00;
   font-size: 1.1em;
 } 
+
+.btn-outline-default, .input-group-text {
+	background-color: white;
+}
