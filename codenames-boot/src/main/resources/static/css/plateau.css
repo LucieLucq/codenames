@@ -4,6 +4,8 @@
 	margin: auto;
 	border-radius: 10px;
 	display: grid;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .rectangle1 {
@@ -71,16 +73,6 @@ div#trait {
 	background-color: #e5c492;
 }
 
-header#bandeau {
-	height: 90px;
-	margin: 0;
-	text-align: center;
-	border-top : solid #9bA5b5 30px;
-	border-bottom: solid #9bA5b5 35px;
-	font-family: 'Poiret One', cursive;
-	color: white;
-}
-
 table {
 	border-collapse: separate;
 	border-spacing: 10px 10px;
@@ -126,6 +118,6 @@ nav li a:hover::before {
 	width: 100%;
 }
 
-#id1{
-	 background-color:white; 
+#id1 {
+	background-color: white;
 }
