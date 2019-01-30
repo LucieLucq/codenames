@@ -92,7 +92,7 @@ nav li a::before {
 	width: 0;
 }
 
-nav li a:hover::before {
+nav li a:hover::before {rfhgrt
 	left: 0;
 	width: 100%;
 }
