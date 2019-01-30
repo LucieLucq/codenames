@@ -9,12 +9,12 @@ h1 {
 
 h2 {
 	font-size: 40px;
-	border-top : solid #9bA5b5 30px;
-	color:red;
+	border-top: solid #9bA5b5 30px;
+	color: red;
 	font-family: 'Special Elite', cursive;
 	text-align: center;
-	margin-left:auto;
-	margin-right:auto;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 h3 {
@@ -23,8 +23,7 @@ h3 {
 	color: black;
 	font-family: 'Montserrat', sans-serif;
 	text-align: center;
-	font-weight:bold;
-	
+	font-weight: bold;
 }
 
 h4 {
@@ -34,7 +33,7 @@ h4 {
 	font-family: 'Montserrat', sans-serif;
 	padding-left: 50px;
 	padding-right: 50px;
-	font-weight:bold;
+	font-weight: bold;
 }
 
 div {
@@ -47,26 +46,37 @@ div {
 	padding-right: 50px;
 	border-top: solid #9bA5b5 10px;
 }
-ul,ol{
+
+ul, ol {
 	padding-left: 100px;
 	padding-right: 100px;
 	color: withe;
 }
-li ,b{
+
+li, b {
 	color: white;
 }
-#div1,#div3, #div5, #div8, #div9 {
+
+.photo-distinction {
+	border-radius: 10px;
+}
+
+#div1, #div3, #div5, #div9 {
 	text-align: center;
 }
 
-#id1{
-    /* color: inherit; */
-	 background-color:white; 
+#div8 {
+	text-align: center;
 }
+
+#id1 {
+	/* color: inherit; */
+	background-color: white;
+}
+
 nav li a {
 	position: relative;
 	text-decoration: none;
-	
 }
 
 nav li a::before {
@@ -85,11 +95,11 @@ nav li a:hover::before {
 	left: 0;
 	width: 100%;
 }
+
 footer {
 	position: absolute;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
 	color: white;
-	
 }
