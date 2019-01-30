@@ -12,13 +12,16 @@
 
 <link href="https://fonts.googleapis.com/css?family=Poiret+One"
 	rel="stylesheet">
+	
+<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 
 <link rel="stylesheet" type="text/css" href="css/accueil-jeu.css" />
 
 <meta name="description" content="" />
 
 </head>
-<nav >
+
+<nav id=id1 >
 		<ul class="nav nav-tabs" >
 			<li class="nav-item"><a class="nav-link" href="accueil">Accueil</a></li>
 			<li class="nav-item"><a class="nav-link" href="lister-carte" >Gestion carte</a></li>
@@ -28,10 +31,10 @@
 		</ul>
 	</nav>
 
-<body>
+<body style="background-color:#9bA5b5;">
 	<h1>Regles du jeu : Codenames</h1>
 	<div id=div1>
-		<img src="images/presentation.jpg" alt="Presentation" width=500
+		<img src="images/codenames1.jpg" alt="Presentation" width=600
 			height=350>
 
 	</div>
@@ -45,23 +48,17 @@
 		<p>–> L'équipe qui trouve tous les noms de Code inscrits sur la
 		carte Clé gagne la partie (l'équipe qui commence doit faire deviner 9
 		mots et l'autre équipe 8).</p></div>
+  
+	<h2>-----------------------Matériel------------------------</h2>
 
-	<h2>Matériel</h2>
-
-	<h3>Les cartes Nom de code :</h3>
-	<div id=div2>
-		<img src="images/carte_description.jpg" alt="carte_description"
-			width=300 height=150>
-
-	</div>
-
+	<h3>Les cartes "Nom de code" </h3>
 	<div>Ce sont les mots (un mot par carte) déposés sur la table en
 		grille de 25 cartes (et visibles par tous) que les espions doivent
 		faire deviner à leur équipe respective.</div>
 
-	<h3>La carte clé :</h3>
+	<h3>La carte "clé" </h3>
 	<div id=div9>
-		<img src="images/carte_cle.jpg" alt="carte_cle" width=300 height=150>
+		<img src="images/carte_cle.png" alt="carte_cle" width=200 height=200>
 
 	</div>
 	<div>
@@ -83,9 +80,9 @@
 		<li>Les 4 lumières LED sur les bords de la « Carte Clé »
 			indiquent la couleur de l'équipe qui commence la partie.</li>
 	</ul>
-	<h3>Tuiles identité:</h3>
+	<h3>Tuiles "identité" </h3>
 	<div id=div3>
-		<img src="images/tuiles_identite.jpg" alt="tuiles" width=400
+		<img src="images/tuile.PNG" alt="tuiles" width=800
 			height=150>
 
 	</div>
@@ -94,8 +91,8 @@
 		les cartes déposées sur la table, la tuile Identité correspondante est
 		placée sur cette carte pour indiquer à qui appartient le Nom de Code
 		désigné.</div>
-	
-	<h2>Déroulement de la partie</h2>
+		
+	<h2>-----------------Déroulement de la partie----------------</h2>
 	<h4>Objectif :</h4>
 	<div>
 		<ul>
@@ -147,7 +144,11 @@
 	<div>[!] Vous devez au moins donner un nom de Code par Tour. Si
 		vous devinez un mot, vous pouvez continuer à jouer ou donner la main.
 		Toute erreur met fin au Tour.</div>
-	<h2>Fin de la partie</h2>
+		
+		
+
+	
+	<h2>---------------------Fin de la partie--------------------</h2>
 	<div id=div6>
 		<img src="images/game-over.png" alt="game-over" width=120 height=100>
 		<p>
@@ -159,7 +160,8 @@
 		<li>A trouvé tous ses Noms de Code (vainqueur)</li>
 		<li>Ou est tombée sur l'Assassin (perdante)</li>
 	</ul>
-	<h2>Mise en place pour la partie suivante :</h2>
+
+	<h2>---------------Mise en place : Partie suivante-------------</h2>
 	<ul>
 		<li>Retirez les tuiles Identité</li>
 		<li>Retournez les 25 cartes Noms de Code</li>
@@ -167,17 +169,13 @@
 			d'Espion)</li>
 		<li>Ou est tombée sur l'Assassin (perdante)</li>
 	</ul>
-	<h4>Pénalités en cas d'indice invalide :</h4>
-	<div id=div7>
-		<img src="images/penalite.jpg" alt="penalite" width=200 height=150>
-
-	</div>
+	<h4>Pénalités en cas d'indice invalide </h4>
 	<ul>
 		<li>Si un Espion donne un indice invalide, l'autre Espion peut
 			recouvrir sur l'un des cartes, l'un de ses Nom de Code avec sa tuile
 			Identité.</li>
 	</ul>
-	<h4>Un indice est invalide si vous utilisez :</h4>
+	<h4>Un indice est invalide si vous utilisez </h4>
 	<ul>
 		<li>Une partie du Nom de Code à deviner (Prince n'est pas
 			l'indice de princesse)</li>
@@ -192,7 +190,7 @@
 		<li>Un chiffre qui se rapporte au nombre de lettres qui composent
 			le Nom de Code</li>
 
-		<h2>Retrouvez les regles de codenames en video :</h2>
+	<h2>---------------------Regles en video--------------------</h2>
 		<div id=div8>
 			<iframe width="420" height="315" src="https://youtu.be/aVt37w8m2SM">
 			</iframe>
@@ -208,6 +206,7 @@
 		<script
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 			integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-			crossorigin="anonymous"></script>
+			crossorigin="anonymous">
+		</script>
 </body>
 </html>
