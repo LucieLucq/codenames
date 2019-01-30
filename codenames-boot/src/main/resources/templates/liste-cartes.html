@@ -22,7 +22,7 @@
 			<li class="nav-item"><a class="nav-link" href="accueil">Accueil</a></li>
 			<li class="nav-item"><a class="nav-link" href="#lister">Lister les cartes</a></li>
 			<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link" href="#ajouter" >Ajouter une carte</a></li>
-			<li class="nav-item"><a class="nav-link" href="#deconnexion">Deconnexion</a></li>
+			<li class="nav-item"><a class="nav-link" href="deconnexion">Deconnexion</a></li>
 		</ul>
 	</nav>
 
@@ -51,11 +51,12 @@
 						<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Actions</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody >
 					<tr th:each="carte:${cartes}">
 						<td scope="row">[[${carte.id }]]</td>
 						<td>[[${carte.libelle }]]</td>
-						<td><a th:href="@{supprimerCarte(id=${carte.id })}">Supprimer
+						<td sec:authorize="hasRole('ROLE_ADMIN')"> 
+						<a th:href="@{supprimerCarte(id=${carte.id })}">Supprimer
 						</a> <a th:href="@{editerCarte(id=${carte.id })}">Editer </a></td>
 					</tr>
 				</tbody>
@@ -86,7 +87,6 @@
 			</form>
 		</div>
 	</section>
-
 
 
 

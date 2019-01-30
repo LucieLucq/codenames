@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().antMatchers("/css/**").permitAll().antMatchers("/images/**").permitAll().antMatchers("/js/**").permitAll().antMatchers("/**").hasAnyRole("ADMIN", "USER").and()
 				.formLogin().loginPage("/connexion").loginProcessingUrl("/perform_login")
 				.defaultSuccessUrl("/accueil", true).failureUrl("/connexion?error=true").permitAll().and().logout()
-				.logoutUrl("/logout").logoutSuccessUrl("/connexion").permitAll();
+				.logoutUrl("/deconnexion").logoutSuccessUrl("/connexion").permitAll();
 	}
 
 	@Bean

@@ -24,5 +24,11 @@ public class AccueilController {
 	public String accueilJeu() {
 		return "accueil-jeu";
 	}
+	
+	@GetMapping("/deconnexion")
+	public String deconnexion() {
+		return "connexion";
+	}
+	
 
 }

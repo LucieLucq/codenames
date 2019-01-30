@@ -31,9 +31,12 @@ public class UtilisateurPrincipal implements UserDetails {
         List<GrantedAuthority> myAuthorities = new ArrayList<GrantedAuthority>();
           if (this.utilisateur.getId()==33) {
                 myAuthorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+                System.out.println("admin");
             }
             else {
+            	
                 myAuthorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+                System.out.println("utilisateur");
             }
             
             return myAuthorities;
