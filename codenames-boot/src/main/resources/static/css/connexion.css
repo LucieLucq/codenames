@@ -1,4 +1,3 @@
-
 h1 {
 	font-size-base: 50px;
 	color: white;
@@ -6,6 +5,16 @@ h1 {
 	text-align: center;
 	border-top: solid #9bA5b5 60px;
 	border-bottom: solid #9bA5b5 30px;
+}
+
+#message {
+	text-align: center;
+	color: #a00;
+	font-weight: bold;
+	border-style: dotted;
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #inscription {
