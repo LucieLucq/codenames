@@ -94,7 +94,7 @@ text-align: center;
 
 img#photo_carte {
 	border-radius: 10px;
-	z-index:1;
+	z-index:5;
 	display: none;
 }
 nav li a {

@@ -1,3 +1,4 @@
+////Envoyer au serveur le mot cliqué
 var myLink = $('.rectangle1');
 myLink.bind('click', function(event) {
 	var mot=$(this).find(".rectangle2");
@@ -14,7 +15,7 @@ myLink.bind('click', function(event) {
 });
 
 
-
+////Distribuer les mots sur la grille
 function distribuerMots(cartes) {
 	//AFFECTER LA VALEUR
 	for (let i = 1; i <= 25; i++) {
@@ -57,7 +58,7 @@ function shuffle(array) {
 	return array;
 }
 
-//Cacher/afficher des images
+////Cacher/afficher des images
 for (let i = 1; i <= 25; i++) {
 
 	$('div#carte' + i).bind('click', function() {

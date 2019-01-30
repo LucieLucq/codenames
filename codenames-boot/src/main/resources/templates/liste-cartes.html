@@ -76,6 +76,7 @@
 
 		<div id="div1" class="container">
 			<form method="POST">
+			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 				<div class="form-group">
 					<label for="nouvelle_carte">Nouveau mot :</label> <input
 						type="text" class="form-control" name="libelle"
