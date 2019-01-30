@@ -1,6 +1,6 @@
 .grille {
-	width:1000px;
-	background-color: #DCDCDC;
+	width: 1000px;
+	background-color: #4b4f56;
 	margin: auto;
 	border-radius: 10px;
 	display: grid;
@@ -27,7 +27,6 @@
 	border: 5px solid #e5c492;
 	top: 7px;
 	left: 83px;
-	
 }
 
 img#carte_id {
@@ -50,6 +49,7 @@ img#carte_id {
 	color: #2d2824;
 	text-transform: uppercase;
 }
+
 .bordure {
 	position: absolute;
 	background-color: none;
@@ -57,9 +57,8 @@ img#carte_id {
 	bottom: 5px;
 	width: 170px;
 	height: 90px;
-	border:2px solid #e5c492;
+	border: 2px solid #e5c492;
 	border-radius: 10px;
-	
 }
 
 div#trait {
@@ -76,8 +75,10 @@ header#bandeau {
 	height: 90px;
 	margin: 0;
 	text-align: center;
-	border-bottom: solid white 35px;
+	border-top : solid #9bA5b5 30px;
+	border-bottom: solid #9bA5b5 35px;
 	font-family: 'Poiret One', cursive;
+	color: white;
 }
 
 table {
@@ -87,16 +88,21 @@ table {
 }
 
 footer {
-position: absolute;
-text-align: center;
-	
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	color: white;
 }
 
 img#photo_carte {
 	border-radius: 10px;
-	z-index:5;
+	z-index: 5;
 	display: none;
 }
+
 nav li a {
 	position: relative;
 	text-decoration: none;
@@ -118,4 +124,8 @@ nav li a::before {
 nav li a:hover::before {
 	left: 0;
 	width: 100%;
+}
+
+#id1{
+	 background-color:white; 
 }
