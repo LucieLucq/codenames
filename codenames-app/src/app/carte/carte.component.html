@@ -1,0 +1,21 @@
+<div class="grille">
+
+		<section id="1">
+			<div class="row">
+				<div *ngFor="let c of CarteService.findAllAsync() | async " class="rectangle1" id="carte1">
+					<div class="photo-distinction">
+						<img id="photo_carte" src="images/beauf.png" width=180 height=100 />
+					</div>
+					<div class="bordure"></div>
+					<div class="rond"></div>
+					<div class="photo-distinction">
+						<img id="carte_id" src="images/carte_id.jpg" width=32 height=40 />
+					</div>
+					<div id="trait">
+						<hr>
+					</div>
+					<div class="rectangle2">{{ c.libelle }}</div>
+				</div>
+			</div>
+		</section>
+	</div>

@@ -1,0 +1,123 @@
+.grille {
+	width: 1000px;
+	background-color: #4b4f56;
+	margin: auto;
+	border-radius: 10px;
+	display: grid;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.rectangle1 {
+	position: relative;
+	width: 180px;
+	height: 100px;
+	background: white;
+	margin: 10px auto;
+	background-color: #FFDEAD;
+	border-radius: 10px;
+	/* image: url('carte_id.jpg'); */
+	float: left;
+}
+
+.rond {
+	position: absolute;
+	background-color: none;
+	border-radius: 50%;
+	width: 15px;
+	height: 15px;
+	border: 5px solid #e5c492;
+	top: 7px;
+	left: 83px;
+}
+
+img#carte_id {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+.rectangle2 {
+	position: absolute;
+	background-color: #ffeed6;
+	left: 10px;
+	bottom: 20px;
+	width: 160px;
+	height: 25px;
+	text-align: center;
+	border-radius: 5px;
+	font-weight: bold;
+	font-size: 15px;
+	color: #2d2824;
+	text-transform: uppercase;
+}
+
+.bordure {
+	position: absolute;
+	background-color: none;
+	left: 5px;
+	bottom: 5px;
+	width: 170px;
+	height: 90px;
+	border: 2px solid #e5c492;
+	border-radius: 10px;
+}
+
+div#trait {
+	position: absolute;
+	top: 47px;
+	left: 10px;
+	bottom: 25px;
+	height: 2px;
+	width: 122px;
+	background-color: #e5c492;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 10px 10px;
+	margin-left: 250px;
+}
+
+footer {
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	display: inline-block;
+	vertical-align: top;
+	color: white;
+}
+
+img#photo_carte {
+	border-radius: 10px;
+	z-index: 5;
+	display: none;
+}
+
+nav li a {
+	position: relative;
+	text-decoration: none;
+	color: inherit;
+}
+
+nav li a::before {
+	content: "";
+	position: absolute;
+	bottom: -5px;
+	left: 50%;
+	width: 0;
+	height: 4px;
+	background: #00008B;
+	transition: all 0.25s ease-in-out;
+	width: 0;
+}
+
+nav li a:hover::before {
+	left: 0;
+	width: 100%;
+}
+
+#id1 {
+	background-color: white;
+}
