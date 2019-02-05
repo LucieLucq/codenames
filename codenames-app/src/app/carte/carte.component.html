@@ -1,8 +1,7 @@
 <div class="grille">
-
 		<section id="1">
 			<div class="row">
-				<div *ngFor="let c of CarteService.findAllAsync() | async " class="rectangle1" id="carte1">
+			<div *ngFor="let c of carteService.findAllAsync() | async" class="rectangle1" id="carte1">
 					<div class="photo-distinction">
 						<img id="photo_carte" src="images/beauf.png" width=180 height=100 />
 					</div>

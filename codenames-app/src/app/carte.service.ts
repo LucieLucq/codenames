@@ -3,6 +3,7 @@ import { Carte} from './carte/carte';
 import { ConfigService } from './config.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,7 +22,7 @@ findAll(){
 
 findAllAsync(){
   if(this.cartesAsync == null){
-    this.cartesAsync = this.httpClient.get("http://192.168.1.128:8080/api/cartes");
+    this.cartesAsync = this.httpClient.get("http://192.168.1.128:8080/api/cartes/liste");
 }
 return this.cartesAsync;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CarteService } from '../carte.service';
+import { Carte} from './carte';
 @Component({
   selector: 'app-carte',
   templateUrl: './carte.component.html',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarteComponent implements OnInit {
 
-  constructor() { }
+  public cartes:Array<Carte>=new Array<Carte>();
+
+  constructor(private carteService: CarteService) {
+  this.cartes=carteService.cartes ;
+}
 
   ngOnInit() {
   }
