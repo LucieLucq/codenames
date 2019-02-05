@@ -58,7 +58,7 @@ function shuffle(array) {
 	return array;
 }
 
-////Cacher/afficher des images
+//Cacher/afficher des images
 for (let i = 1; i <= 25; i++) {
 
 	$('div#carte' + i).bind('click', function() {
