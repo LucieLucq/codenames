@@ -31,4 +31,15 @@ refresh(){
   this.cartesAsync = null;
 }
 
+////Envoyer au serveur le mot cliqué
+
+
+
+
+
+
+
+
+
+
 }
