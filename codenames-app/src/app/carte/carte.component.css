@@ -1,7 +1,7 @@
 .grille {
 	width: 1000px;
 	background-color: #4b4f56;
-	/* margin: auto; */
+	margin: auto;
 	border-radius: 10px;
 	display: grid;
 	margin-top: auto;
