@@ -79,11 +79,10 @@ function afficherMot() {
 }
 
 //var eventSource=new EventSource("http://192.168.1.128/codenames-web/plateau");
-////onemessage qui se declenche quand un message est recu du serveur 
-////close qui permet de fermer la connexion 
+////onemessage qui se declenche quand un message est recu du serveur
+////close qui permet de fermer la connexion
 //eventSource.message=function(evt){
 //	//evt.data la donnée recue du serveur
 //	var monProduitRecuDuServeur=JSON.parse(evt.data);
 //	afficherMot(monProduitRecuDuServeur);
 //}
-
