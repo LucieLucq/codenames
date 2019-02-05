@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarteService } from '../carte.service';
 import { Carte} from './carte';
 
+
 @Component({
   selector: 'app-carte',
   templateUrl: './carte.component.html',
@@ -17,5 +18,7 @@ export class CarteComponent implements OnInit {
 
   ngOnInit() {
   }
+
+
 
 }
