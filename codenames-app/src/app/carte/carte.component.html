@@ -1,14 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Bienvenue sur codenames !</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/css?family=Poiret+One"
+	rel="stylesheet" />
+
+<meta name="description" content="" />
+
+<meta name="viewport" content="width=devide-width, initial-scale=1" />
+</head>
+
+<body style="background-color: #9bA5b5;">
+	<nav id=id1>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link" href="accueil">Accueil</a></li>
+			<li class="nav-item"><a class="nav-link" href="deconnexion">Déconnexion</a></li>
+		</ul>
+	</nav>
+	<br>
+
+
+
 <div class="grille">
 		<section id="1">
 			<div class="row">
 			<div *ngFor="let c of carteService.findAllAsync() | async" class="rectangle1" id="carte1">
 					<div class="photo-distinction">
-						<img id="photo_carte" src="images/beauf.png" width=180 height=100 />
+						<img id="photo_carte" src="assets/images/beauf.png" width=180 height=100 />
 					</div>
 					<div class="bordure"></div>
 					<div class="rond"></div>
 					<div class="photo-distinction">
-						<img id="carte_id" src="images/carte_id.jpg" width=32 height=40 />
+						<img id="carte_id" src="assets/images/carte_id.jpg" width=32 height=40 />
 					</div>
 					<div id="trait">
 						<hr>
@@ -18,3 +48,24 @@
 			</div>
 		</section>
 	</div>
+
+
+	<footer class="container text-center">Copyright codenames.fr
+		&copy; 2019</footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script src="assets/js/plateau.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+		integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+		crossorigin="anonymous"></script>
+
+
+
+</body>
+</html>
