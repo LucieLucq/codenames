@@ -31,19 +31,6 @@ refresh(){
   this.cartesAsync = null;
 }
 
-////Envoyer au serveur le mot cliqué
-
-
-
-
-
-
-
-
-
-
-
-
 ////Distribuer les mots sur la grille
 distribuer() {
   this.httpClient.get<Carte[]>("http://192.168.1.128:8080/api/cartes/liste").subscribe(resp => this.cartes = resp);
